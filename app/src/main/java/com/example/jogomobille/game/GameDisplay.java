@@ -1,8 +1,8 @@
-package com.example.jogomobille;
+package com.example.jogomobille.game;
 
 import android.graphics.Rect;
 
-import com.example.jogomobille.gameobject.GameObject;
+import com.example.jogomobille.game.gameobject.GameObject;
 
 public class GameDisplay {
     public final Rect DISPLAY_RECT;

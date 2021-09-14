@@ -1,8 +1,8 @@
-package com.example.jogomobille.gameobject;
+package com.example.jogomobille.game.gameobject;
 
 import android.graphics.Canvas;
 
-import com.example.jogomobille.GameDisplay;
+import com.example.jogomobille.game.GameDisplay;
 
 /**
  * GameObject is an abstract class which is the foundation of all world objects in the game.

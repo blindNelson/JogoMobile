@@ -1,16 +1,14 @@
-package com.example.jogomobille.gameobject;
+package com.example.jogomobille.game.gameobject;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.jogomobille.GameDisplay;
-import com.example.jogomobille.Gameloop;
-import com.example.jogomobille.Utils;
-import com.example.jogomobille.gamepanel.Joystick;
+import com.example.jogomobille.game.GameDisplay;
+import com.example.jogomobille.game.Gameloop;
+import com.example.jogomobille.utils.Utils;
+import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.R;
 
 /**

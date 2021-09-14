@@ -1,11 +1,7 @@
-package com.example.jogomobille;
+package com.example.jogomobille.game;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.view.Surface;
 import android.view.SurfaceHolder;
-
-import java.util.Observer;
 
 public class Gameloop extends Thread {
     public static final double MAX_UPS = 30.0;

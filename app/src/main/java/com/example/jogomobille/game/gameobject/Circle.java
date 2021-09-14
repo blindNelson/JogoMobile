@@ -1,10 +1,10 @@
-package com.example.jogomobille.gameobject;
+package com.example.jogomobille.game.gameobject;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.jogomobille.GameDisplay;
+import com.example.jogomobille.game.GameDisplay;
 
 /**
  * Circle is an abstract class which implements a draw method from GameObject for drawing the object

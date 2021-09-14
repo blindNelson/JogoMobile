@@ -1,10 +1,10 @@
-package com.example.jogomobille.gamepanel;
+package com.example.jogomobille.game.gamepanel;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.jogomobille.Utils;
+import com.example.jogomobille.utils.Utils;
 
 public class Joystick {
     private final int outerCircleCenterPositionX;

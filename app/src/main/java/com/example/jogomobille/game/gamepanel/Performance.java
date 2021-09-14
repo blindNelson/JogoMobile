@@ -1,4 +1,4 @@
-package com.example.jogomobille.gamepanel;
+package com.example.jogomobille.game.gamepanel;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,9 +6,8 @@ import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.jogomobille.Gameloop;
+import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.R;
-import com.example.jogomobille.gameobject.Player;
 
 public class Performance {
     private Gameloop gameLoop;

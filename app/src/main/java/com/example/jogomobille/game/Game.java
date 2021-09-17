@@ -19,8 +19,8 @@ import com.example.jogomobille.game.gamepanel.Joystick;
  */
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
-    private final GameLevel gameLevel;
-    private GamePainels gamePainels;
+    private final GameScene gameScene;
+    private GamePanels gamePanels;
     private Context context;
     private Player player;
     private Joystick joystick;
@@ -41,12 +41,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         // Initialize game objects
-        gameLevel = new GameLevel();
         joystick = new Joystick(100, 600, 70, 40);
         player = new Player(context, joystick, 600, 350, 15);
 
+        gameScene = new GameScene(getContext(), player);
+
         // Initialize game panels
-        gamePainels = new GamePainels(gameLoop, getContext(), player);
+        gamePanels = new GamePanels(gameLoop, getContext(), player);
 
 
         // Initialize gameDisplay and center it around the player
@@ -83,10 +84,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     joystick.setIsPressed(false);
                     joystick.resetActuator();
                 }
-
                 return true;
         }
-
         return super.onTouchEvent(event);
     }
 
@@ -114,9 +113,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
+        gameScene.draw(canvas, gameDisplay);
         player.draw(canvas, gameDisplay);
-        gamePainels.draw(canvas);
-        gameLevel.draw(canvas);
+        gamePanels.draw(canvas);
 
         joystick.draw(canvas);
 
@@ -127,8 +126,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         player.update();
-        gamePainels.update();
-        gameLevel.update();
+        gamePanels.update();
+        gameScene.update();
 
         gameDisplay.update();
 

@@ -7,7 +7,7 @@ import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Performance;
 import com.example.jogomobille.game.gamepanel.PlayerPosition;
 
-public class GamePainels {
+public class GamePanels {
 
     private final Gameloop gameloop;
     private final Context context;
@@ -15,7 +15,7 @@ public class GamePainels {
     private final Player player;
     private final PlayerPosition playerPosition;
 
-    public GamePainels(Gameloop gameloop, Context context, Player player){
+    public GamePanels(Gameloop gameloop, Context context, Player player){
         this.gameloop = gameloop;
         this.context = context;
         this.player = player;

@@ -36,6 +36,7 @@ public class GameDisplay {
         gameToDisplayCoordinatesOffsetX = displayCenterX - gameCenterX;
         gameToDisplayCoordinatesOffsetY = displayCenterY - gameCenterY;
     }
+    
 
     public double gameToDisplayCoordinatesX(double x) {
         return x + gameToDisplayCoordinatesOffsetX;

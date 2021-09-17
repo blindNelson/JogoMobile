@@ -16,4 +16,8 @@ public class Utils {
             Math.pow(p1y - p2y, 2)
         );
     }
+
+    public static double pitagoras(double a, double b) {
+        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+    }
 }

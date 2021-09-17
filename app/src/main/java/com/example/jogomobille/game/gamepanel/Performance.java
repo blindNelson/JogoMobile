@@ -28,8 +28,8 @@ public class Performance {
         Paint paint = new Paint();
         int color = ContextCompat.getColor(context, R.color.White);
         paint.setColor(color);
-        paint.setTextSize(50);
-        canvas.drawText("UPS: " + Math.ceil(Double.parseDouble(averageUPS)), 100, 100, paint);
+        paint.setTextSize(25);
+        canvas.drawText("UPS: " + Math.ceil(Double.parseDouble(averageUPS)), 50, 50, paint);
     }
 
     public void drawFPS(Canvas canvas) {
@@ -37,7 +37,7 @@ public class Performance {
         Paint paint = new Paint();
         int color = ContextCompat.getColor(context, R.color.White);
         paint.setColor(color);
-        paint.setTextSize(50);
-        canvas.drawText("FPS: " + Math.ceil(Double.parseDouble(averageFPS)), 100, 200, paint);
+        paint.setTextSize(25);
+        canvas.drawText("FPS: " + Math.ceil(Double.parseDouble(averageFPS)), 50, 100, paint);
     }
 }

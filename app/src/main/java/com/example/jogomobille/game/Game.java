@@ -10,9 +10,8 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.example.jogomobille.game.gameobject.Player;
+import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Joystick;
-import com.example.jogomobille.game.gamepanel.Performance;
 
 /**
  * Game manages all objects in the game and its responsible for updating all states and render all
@@ -20,13 +19,14 @@ import com.example.jogomobille.game.gamepanel.Performance;
  */
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    private final GameLevel gameLevel;
+    private GamePainels gamePainels;
     private Context context;
     private Player player;
     private Joystick joystick;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
-    private Performance performance;
     private GameDisplay gameDisplay;
 
     public Game(Context context) {
@@ -39,13 +39,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         gameLoop = new Gameloop(this, surfaceHolder);
 
-        // Initialize game panels
-        performance = new Performance(gameLoop, context);
-
 
         // Initialize game objects
-        joystick = new Joystick(650, 1250, 70, 130);
-        player = new Player(context, joystick, 2*500, 500, 30);
+        gameLevel = new GameLevel();
+        joystick = new Joystick(100, 600, 70, 40);
+        player = new Player(context, joystick, 600, 350, 15);
+
+        // Initialize game panels
+        gamePainels = new GamePainels(gameLoop, getContext(), player);
 
 
         // Initialize gameDisplay and center it around the player
@@ -114,16 +115,25 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
 
         player.draw(canvas, gameDisplay);
+        gamePainels.draw(canvas);
+        gameLevel.draw(canvas);
 
         joystick.draw(canvas);
+
     }
 
     public void update() {
-        // Update game state
-        joystick.update();
+        // Update game stateplayer.update();
+
+
         player.update();
+        gamePainels.update();
+        gameLevel.update();
 
         gameDisplay.update();
+
+        joystick.update();
+
     }
 
     public void pause() {

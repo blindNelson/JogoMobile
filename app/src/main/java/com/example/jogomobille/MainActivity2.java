@@ -3,6 +3,7 @@ package com.example.jogomobille;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -27,6 +28,8 @@ public class MainActivity2 extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
+
+        Log.d("MainActivity2.java", "onCreate()");
 
         getSupportActionBar().hide();
 

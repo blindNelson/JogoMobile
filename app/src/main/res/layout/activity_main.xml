@@ -10,17 +10,11 @@
         android:id="@+id/button"
         android:layout_width="126dp"
         android:layout_height="74dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="223dp"
-        android:layout_marginEnd="191dp"
-        android:layout_marginBottom="460dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="168dp"
         android:fontFamily=""
         android:text="Bora"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

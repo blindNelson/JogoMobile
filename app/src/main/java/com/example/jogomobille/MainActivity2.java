@@ -29,8 +29,6 @@ public class MainActivity2 extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
-        Log.d("MainActivity2.java", "onCreate()");
-
         getSupportActionBar().hide();
 
         // Set content view to game, so that objects in the Game class can be rendered to the screen

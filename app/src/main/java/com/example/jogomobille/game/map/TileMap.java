@@ -51,8 +51,8 @@ public class TileMap {
 
     private Rect getRectByIndex(int idxRow, int idxCol) {
         return new Rect(
-                idxCol*TILE_WIDTH_PIXELS,
-                idxRow*TILE_HEIGHT_PIXELS,
+                (idxCol + 1)*TILE_WIDTH_PIXELS,
+                (idxRow + 1)*TILE_HEIGHT_PIXELS,
                 (idxCol + 1)*TILE_WIDTH_PIXELS,
                 (idxRow + 1)*TILE_HEIGHT_PIXELS
         );

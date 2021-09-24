@@ -2,6 +2,9 @@ package com.example.jogomobille.game.gameobject.player;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
@@ -9,9 +12,12 @@ import androidx.core.content.ContextCompat;
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
+import com.example.jogomobille.game.map.MapLayout;
 import com.example.jogomobille.utils.Utils;
 import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.R;
+
+import java.util.Map;
 
 /**
  * Player is the main character of the game, which the user can control with a touch joystick.
@@ -36,18 +42,18 @@ public class Player extends Circle {
         velocityX = joystick.getActuatorX() * MAX_SPEED;
         velocityY = joystick.getActuatorY() * MAX_SPEED;
 
-        Log.d("Player.java", "update():velocityX="+velocityX);
-        Log.d("Player.java", "update():velocityY="+velocityY);
+        Log.d("Player.java", "update():velocityX=" + velocityX);
+        Log.d("Player.java", "update():velocityY=" + velocityY);
 
-        positionX += velocityX;
-        positionY += velocityY;
+        positionX=velocityX;
+        positionY=velocityY;
 
         // Update direction
         if (velocityX != 0 || velocityY != 0) {
             // Normalize velocity to get direction (unit vector of velocity)
             double distance = Utils.getDistanceBetweenPoints(0, 0, velocityX, velocityY);
-            directionX = velocityX/distance;
-            directionY = velocityY/distance;
+            directionX = velocityX / distance;
+            directionY = velocityY / distance;
         }
 
     }
@@ -66,4 +72,7 @@ public class Player extends Circle {
     public double getVelocityY() {
         return velocityY;
     }
+
+    public int playerPositionXToMapCoordinates(double positionX) { return (int)(positionX / MapLayout.TILE_WIDTH_PIXELS); }
+    public int playerPositionYToMapCoordinates(double positionY) { return (int)(positionY / MapLayout.TILE_HEIGHT_PIXELS); }
 }

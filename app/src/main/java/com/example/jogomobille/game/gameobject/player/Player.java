@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat;
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
-import com.example.jogomobille.game.map.MapLayout;
 import com.example.jogomobille.utils.Utils;
 import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.R;
@@ -72,7 +71,4 @@ public class Player extends Circle {
     public double getVelocityY() {
         return velocityY;
     }
-
-    public int playerPositionXToMapCoordinates(double positionX) { return (int)(positionX / MapLayout.TILE_WIDTH_PIXELS); }
-    public int playerPositionYToMapCoordinates(double positionY) { return (int)(positionY / MapLayout.TILE_HEIGHT_PIXELS); }
 }

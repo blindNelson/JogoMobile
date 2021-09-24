@@ -16,7 +16,7 @@ public class SpriteSheet {
     public SpriteSheet(Context context) {
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inScaled = false;
-        this.bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.sprite_sheet_terada, bitmapOptions);
+        this.bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.sprite_sheet, bitmapOptions);
     }
 
     public Bitmap getBitmap() {

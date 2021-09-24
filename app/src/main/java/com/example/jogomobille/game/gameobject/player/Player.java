@@ -53,12 +53,7 @@ public class Player extends Circle {
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
-        canvas.drawCircle(
-                (int)gameDisplay.gameToDisplayCoordinatesX(positionX),
-                (int)gameDisplay.gameToDisplayCoordinatesY(positionY),
-                50,
-                paint
-        );
+        super.draw(canvas, gameDisplay);
     }
 
     public PlayerState getPlayerState() {

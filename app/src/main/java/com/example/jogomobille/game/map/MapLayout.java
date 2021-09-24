@@ -1,8 +1,8 @@
 package com.example.jogomobille.game.map;
 
 public class MapLayout {
-    public static final int TILE_WIDTH_PIXELS = 32;
-    public static final int TILE_HEIGHT_PIXELS = 32;
+    public static final int TILE_WIDTH_PIXELS = 64;
+    public static final int TILE_HEIGHT_PIXELS = 64;
     public static final int NUMBER_OF_ROW_TILES = 60;
     public static final int NUMBER_OF_COLUMN_TILES = 60;
 

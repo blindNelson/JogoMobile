@@ -8,6 +8,7 @@ import static com.example.jogomobille.game.map.MapLayout.TILE_WIDTH_PIXELS;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.gameobject.player.Player;
@@ -64,6 +65,8 @@ public class TileMap {
         canvas.drawBitmap(mapBitmap, gameDisplay.getGameRect(), gameDisplay.DISPLAY_RECT, null);
     }
 
+
+
     private boolean isColiding(int x, int y){
         return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS].collide;
     }
@@ -80,32 +83,32 @@ public class TileMap {
     }
 
 
+
     public double colisionX(Player player, double velocityX) {
 
         //colisão com bordas do mapa
         if (player.getPositionX() + velocityX < 0)
             return -player.getPositionX();
         if (player.getPositionX() + velocityX + player.getWidth() >= NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS)
-            return NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS - (player.getPositionX() + player.getWidth());
+            return (NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS - (player.getPositionX() + player.getWidth()))-1;
 
 
 
         //colisão com paredes
         try {
+            int x = (int)player.getPositionX();
+            int y = (int)player.getPositionY();
+            int w = (int)player.getWidth();
+            int h = (int)player.getHeight();
+            int v = (int)velocityX;
 
-            boolean colide = isRetColiding(
-                    (int)(player.getPositionX()+velocityX),
-                    (int)player.getPositionY(),
-                    (int)player.getWidth(),
-                    (int)player.getHeight()
-            );
-            if(colide){
-                return 0;
+            if(isColiding(x+v, y)||isColiding(x+v, y+h))
+                return ((double)((((x + v) / TILE_WIDTH_PIXELS)+1) * TILE_WIDTH_PIXELS) - player.getPositionX());
+            if(isColiding(x+v+w, y)||isColiding(x+v+w,y+h)) {
+                return ((double)(((x + v) / TILE_WIDTH_PIXELS) * TILE_WIDTH_PIXELS) - player.getPositionX())-1;
             }
-
         }
         catch(ArrayIndexOutOfBoundsException e){
-            e.printStackTrace();
             return 0;
         }
 
@@ -116,27 +119,25 @@ public class TileMap {
         if(player.getPositionY()+velocityY<=0)
             return  -player.getPositionY();
         if(player.getPositionY()+velocityY+player.getHeight()>=NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS)
-            return NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS - (player.getPositionY()+ player.getHeight());
+            return (NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS - (player.getPositionY()+ player.getHeight()))-1;
 
         try {
+            int x = (int)player.getPositionX();
+            int y = (int)player.getPositionY();
+            int w = (int)player.getWidth();
+            int h = (int)player.getHeight();
+            int v = (int)velocityY;
 
-            boolean colide = isRetColiding(
-                    (int)player.getPositionX(),
-                    (int)(player.getPositionY()+velocityY),
-                    (int)player.getWidth(),
-                    (int)player.getHeight()
-            );
-            if(colide){
-                return 0;
+            if(isColiding(x, y+v)||isColiding(x+w, y+v))
+                return ((double)((((y + v) / TILE_HEIGHT_PIXELS)+1) * TILE_HEIGHT_PIXELS) - player.getPositionY());
+            if(isColiding(x, y+v+h)||isColiding(x+w,y+v+h)) {
+                return ((double)(((y + v) / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS) - player.getPositionY())-1;
             }
 
         }
         catch(ArrayIndexOutOfBoundsException e){
-            e.printStackTrace();
             return 0;
         }
-
-
 
         return velocityY;
     }

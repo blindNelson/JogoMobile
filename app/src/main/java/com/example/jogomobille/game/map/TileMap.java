@@ -52,8 +52,8 @@ public class TileMap {
 
     private Rect getRectByIndex(int idxRow, int idxCol) {
         return new Rect(
-                (idxCol + 1)*TILE_WIDTH_PIXELS,
-                (idxRow + 1)*TILE_HEIGHT_PIXELS,
+                (idxCol)*TILE_WIDTH_PIXELS,
+                (idxRow)*TILE_HEIGHT_PIXELS,
                 (idxCol + 1)*TILE_WIDTH_PIXELS,
                 (idxRow + 1)*TILE_HEIGHT_PIXELS
         );
@@ -64,22 +64,80 @@ public class TileMap {
         canvas.drawBitmap(mapBitmap, gameDisplay.getGameRect(), gameDisplay.DISPLAY_RECT, null);
     }
 
+    private boolean isColiding(int x, int y){
+        return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS].collide;
+    }
+
+    private boolean isRetColiding(int x, int y, int w, int h ){
+        if (isColiding(x, y)||isColiding(x,y + h)){
+            return true;
+        }
+
+        if (isColiding(x+w,y)|| isColiding(x+w,y + h)){
+            return true;
+        }
+        return false;
+    }
+
 
     public double colisionX(Player player, double velocityX) {
-        if(player.getPositionX()+velocityX<0)
-            velocityX = -player.getPositionX();
-        if(player.getPositionX()+velocityX+ player.getWidth()>=NUMBER_OF_COLUMN_TILES*TILE_WIDTH_PIXELS)
-            velocityX = NUMBER_OF_COLUMN_TILES*TILE_WIDTH_PIXELS - (player.getPositionX()+ player.getWidth());
 
+        //colisão com bordas do mapa
+        if (player.getPositionX() + velocityX < 0)
+            return -player.getPositionX();
+        if (player.getPositionX() + velocityX + player.getWidth() >= NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS)
+            return NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS - (player.getPositionX() + player.getWidth());
+
+
+
+        //colisão com paredes
+        try {
+
+            boolean colide = isRetColiding(
+                    (int)(player.getPositionX()+velocityX),
+                    (int)player.getPositionY(),
+                    (int)player.getWidth(),
+                    (int)player.getHeight()
+            );
+            if(colide){
+                return 0;
+            }
+
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            return 0;
+        }
 
         return velocityX;
     }
 
     public double colisionY(Player player, double velocityY) {
         if(player.getPositionY()+velocityY<=0)
-            velocityY = -player.getPositionY();
+            return  -player.getPositionY();
         if(player.getPositionY()+velocityY+player.getHeight()>=NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS)
-            velocityY=NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS - (player.getPositionY()+ player.getHeight());
+            return NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS - (player.getPositionY()+ player.getHeight());
+
+        try {
+
+            boolean colide = isRetColiding(
+                    (int)player.getPositionX(),
+                    (int)(player.getPositionY()+velocityY),
+                    (int)player.getWidth(),
+                    (int)player.getHeight()
+            );
+            if(colide){
+                return 0;
+            }
+
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            return 0;
+        }
+
+
+
         return velocityY;
     }
 }

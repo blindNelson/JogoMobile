@@ -10,7 +10,7 @@ public class GroundTile extends Tile {
     private final Sprite sprite;
 
     public GroundTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
-        super(mapLocationRect);
+        super(mapLocationRect, false);
         sprite = spriteSheet.getGroundSprite();
     }
 

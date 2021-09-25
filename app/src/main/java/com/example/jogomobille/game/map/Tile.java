@@ -7,10 +7,12 @@ import com.example.jogomobille.game.graphics.SpriteSheet;
 
 abstract class Tile {
 
+    public final boolean collide;
     protected final Rect mapLocationRect;
 
-    public Tile(Rect mapLocationRect) {
+    public Tile(Rect mapLocationRect, boolean colide) {
         this.mapLocationRect = mapLocationRect;
+        this.collide = colide;
     }
 
     public enum TileType {

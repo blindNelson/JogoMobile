@@ -10,7 +10,7 @@ public class WallTile extends Tile {
     private final Sprite sprite;
 
     public WallTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
-        super(mapLocationRect);
+        super(mapLocationRect, true);
         sprite = spriteSheet.getWallSprite();
     }
 

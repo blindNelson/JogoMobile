@@ -10,7 +10,7 @@ public class Wall2Tile extends Tile {
     private final Sprite sprite;
 
     public Wall2Tile(SpriteSheet spriteSheet, Rect mapLocationRect) {
-        super(mapLocationRect);
+        super(mapLocationRect, true);
         sprite = spriteSheet.getWall2Sprite();
     }
 

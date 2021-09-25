@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
+import com.example.jogomobille.game.map.TileMap;
 import com.example.jogomobille.utils.Utils;
 import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.R;
@@ -28,10 +29,12 @@ public class Player extends Circle {
 
     private final Joystick joystick;
     private final PlayerState playerState;
+    private final TileMap tilemap;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius) {
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tilemap) {
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius);
         this.joystick = joystick;
+        this.tilemap = tilemap;
 
         playerState = new PlayerState(this);
     }
@@ -41,11 +44,8 @@ public class Player extends Circle {
         velocityX = joystick.getActuatorX() * MAX_SPEED;
         velocityY = joystick.getActuatorY() * MAX_SPEED;
 
-        Log.d("Player.java", "update():velocityX=" + velocityX);
-        Log.d("Player.java", "update():velocityY=" + velocityY);
-
-        positionX=velocityX;
-        positionY=velocityY;
+        positionX+=tilemap.colisionX(this, velocityX);
+        positionY+=tilemap.colisionY(this, velocityY);
 
         // Update direction
         if (velocityX != 0 || velocityY != 0) {

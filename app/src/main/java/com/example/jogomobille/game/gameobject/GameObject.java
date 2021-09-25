@@ -8,6 +8,9 @@ import com.example.jogomobille.game.GameDisplay;
  * GameObject is an abstract class which is the foundation of all world objects in the game.
  */
 public abstract class GameObject {
+
+    protected double width;
+    protected double height;
     protected double positionX;
     protected double positionY;
     protected double velocityX = 0;
@@ -15,9 +18,11 @@ public abstract class GameObject {
     protected double directionX = 1;
     protected double directionY = 0;
 
-    public GameObject(double positionX, double positionY) {
+    public GameObject(double positionX, double positionY, double width, double height) {
         this.positionX = positionX;
         this.positionY = positionY;
+        this.width = width;
+        this.height = height;
     }
 
     protected static double getDistanceBetweenObjects(GameObject obj1, GameObject obj2) {
@@ -42,6 +47,14 @@ public abstract class GameObject {
 
     protected double getDirectionY() {
         return directionY;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 
 }

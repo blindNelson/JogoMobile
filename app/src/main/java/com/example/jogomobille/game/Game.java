@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 
 import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Joystick;
+import com.example.jogomobille.game.graphics.SpriteSheet;
+import com.example.jogomobille.game.map.TileMap;
 
 /**
  * Game manages all objects in the game and its responsible for updating all states and render all
@@ -19,11 +21,12 @@ import com.example.jogomobille.game.gamepanel.Joystick;
  */
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
-    private final GameScene gameScene;
+    //private final GameScene gameScene;
     private GamePanels gamePanels;
     private Context context;
     private Player player;
     private Joystick joystick;
+    private final TileMap tilemap;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
@@ -42,9 +45,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         // Initialize game objects
         joystick = new Joystick(100, 600, 70, 40);
-        player = new Player(context, joystick, 600, 350, 32);
+        SpriteSheet spriteSheet = new SpriteSheet(context);
+        tilemap = new TileMap(spriteSheet);
+        player = new Player(context, joystick, 600, 350, 32, tilemap);
 
-        gameScene = new GameScene(getContext(), player);
+        //gameScene = new GameScene(getContext(), player);
 
         // Initialize game panels
         gamePanels = new GamePanels(gameLoop, getContext(), player);
@@ -113,7 +118,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        gameScene.draw(canvas, gameDisplay);
+        //gameScene.draw(canvas, gameDisplay);
+        tilemap.draw(canvas, gameDisplay);
         player.draw(canvas, gameDisplay);
         gamePanels.draw(canvas);
 
@@ -127,7 +133,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player.update();
         gamePanels.update();
-        gameScene.update();
+        //gameScene.update();
 
         gameDisplay.update();
 

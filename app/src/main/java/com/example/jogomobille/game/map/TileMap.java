@@ -71,72 +71,98 @@ public class TileMap {
         return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS].collide;
     }
 
-    private boolean isRetColiding(int x, int y, int w, int h ){
-        if (isColiding(x, y)||isColiding(x,y + h)){
-            return true;
-        }
-
-        if (isColiding(x+w,y)|| isColiding(x+w,y + h)){
-            return true;
-        }
-        return false;
-    }
 
 
-
-    public double colisionX(Player player, double velocityX) {
-
-        //colisão com bordas do mapa
-        if (player.getPositionX() + velocityX < 0)
-            return -player.getPositionX();
-        if (player.getPositionX() + velocityX + player.getWidth() >= NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS)
-            return (NUMBER_OF_COLUMN_TILES * TILE_WIDTH_PIXELS - (player.getPositionX() + player.getWidth()))-1;
-
+    public double colisionX(Player player, int velocityX) {
+        int x = (int)player.getPositionX();
+        int y = (int)player.getPositionY();
+        int w = (int)player.getWidth();
+        int h = (int)player.getHeight();
+        int v = velocityX;
 
 
         //colisão com paredes
         try {
-            int x = (int)player.getPositionX();
-            int y = (int)player.getPositionY();
-            int w = (int)player.getWidth();
-            int h = (int)player.getHeight();
-            int v = (int)velocityX;
 
-            if(isColiding(x+v, y)||isColiding(x+v, y+h))
-                return ((double)((((x + v) / TILE_WIDTH_PIXELS)+1) * TILE_WIDTH_PIXELS) - player.getPositionX());
-            if(isColiding(x+v+w, y)||isColiding(x+v+w,y+h)) {
-                return ((double)(((x + v) / TILE_WIDTH_PIXELS) * TILE_WIDTH_PIXELS) - player.getPositionX())-1;
+            String message = "x = " + x + ";\n" +
+                    "y = " + y + ";\n" +
+                    "xw = " + (x+w) + ";\n" +
+                    "yh = " + (y+h) + ";\n" +
+                    "v = " + v + ";\n" +
+                    "xv = " + (x+v) + ";\n" +
+                    "xwv = " + (x+w+v) + ";\n";
+
+
+            if(isColiding(x+v, y)||isColiding(x+v, y+h)) {
+
+                velocityX = ( ((x / TILE_WIDTH_PIXELS) * TILE_WIDTH_PIXELS) - x);
+
+                Log.d("TileMap.java", "colisionX():Left of object is colliding;\n"+message +
+                        "fv = " + (velocityX) + ";");
+                return velocityX;
             }
+
+
+            if(isColiding(x+v+w, y)||isColiding(x+v+w,y+h)) {
+
+                velocityX = ((((x / TILE_WIDTH_PIXELS)+1) * TILE_WIDTH_PIXELS) - x)-1;
+
+                Log.d("TileMap.java", "colisionX():Right of object is colliding;\n"+message +
+                        "fv = " + (velocityX) + ";");
+                return velocityX;
+            }
+
+
         }
         catch(ArrayIndexOutOfBoundsException e){
-            return 0;
+            Log.wtf("TileMap.java","colisionX():object {"+player+"} out of the map;");
         }
 
         return velocityX;
     }
 
-    public double colisionY(Player player, double velocityY) {
-        if(player.getPositionY()+velocityY<=0)
-            return  -player.getPositionY();
-        if(player.getPositionY()+velocityY+player.getHeight()>=NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS)
-            return (NUMBER_OF_ROW_TILES*TILE_HEIGHT_PIXELS - (player.getPositionY()+ player.getHeight()))-1;
+    public int colisionY(Player player, int velocityY) {
+        int x = (int)player.getPositionX();
+        int y = (int)player.getPositionY();
+        int w = (int)player.getWidth();
+        int h = (int)player.getHeight();
+        int v = velocityY;
+
+        String message = "x = " + x + ";\n" +
+                "y = " + y + ";\n" +
+                "xw = " + (x+w) + ";\n" +
+                "yh = " + (y+h) + ";\n" +
+                "v = " + v + ";\n" +
+                "yv = " + (y+v) + ";\n" +
+                "yhv = " + (y+h+v) + ";\n";
 
         try {
-            int x = (int)player.getPositionX();
-            int y = (int)player.getPositionY();
-            int w = (int)player.getWidth();
-            int h = (int)player.getHeight();
-            int v = (int)velocityY;
 
-            if(isColiding(x, y+v)||isColiding(x+w, y+v))
-                return ((double)((((y + v) / TILE_HEIGHT_PIXELS)+1) * TILE_HEIGHT_PIXELS) - player.getPositionY());
-            if(isColiding(x, y+v+h)||isColiding(x+w,y+v+h)) {
-                return ((double)(((y + v) / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS) - player.getPositionY())-1;
+            if(isColiding(x,y+v)||isColiding(x+w,y+v)) {
+
+                velocityY = (((y / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS) - y);
+
+                Log.d("TileMap.java", "colisionY():top of object is colliding;\n"+message +
+                        "fv = " + (velocityY) + ";");
+                return (int)velocityY;
+
             }
+
+
+            if(isColiding(x, y+v+h)||isColiding(x+w,y+v+h)) {
+
+                velocityY = ((((y / TILE_HEIGHT_PIXELS)+1) * TILE_HEIGHT_PIXELS) -y)-1;
+
+                Log.d("TileMap.java", "colisionY():bottom of object is colliding;\n"+message +
+                        "fv = " + (velocityY) + ";");
+                return velocityY;
+
+            }
+
 
         }
         catch(ArrayIndexOutOfBoundsException e){
-            return 0;
+            Log.wtf("TileMap.java","colisionY():object {"+player+"} out of the map;\n"+message);
         }
 
         return velocityY;

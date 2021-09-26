@@ -41,11 +41,16 @@ public class Player extends Circle {
 
     public void update() {
         // Update velocity based on actuator of joystick
-        velocityX = joystick.getActuatorX() * MAX_SPEED;
-        velocityY = joystick.getActuatorY() * MAX_SPEED;
+        velocityX = tilemap.colisionX(this,(int)(joystick.getActuatorX() * MAX_SPEED));
+        velocityY = tilemap.colisionY(this,(int)(joystick.getActuatorY() * MAX_SPEED));
 
-        positionX+=tilemap.colisionX(this, velocityX);
-        positionY+=tilemap.colisionY(this, velocityY);
+        Log.d("player.java", "update(){\n" +
+                "   positionX="+positionX+";velocityX="+velocityX+";\n" +
+                "   positionY="+positionY+";velocityY="+velocityY+";\n" +
+                "}");
+
+        positionX+=velocityX;
+        positionY+=velocityY;
 
         // Update direction
         if (velocityX != 0 || velocityY != 0) {

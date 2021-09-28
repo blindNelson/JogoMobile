@@ -11,7 +11,7 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.jogomobille.game.GameDisplay;
-import com.example.jogomobille.game.gameobject.player.Player;
+import com.example.jogomobille.game.gameobject.GameObject;
 import com.example.jogomobille.game.graphics.SpriteSheet;
 
 public class TileMap {
@@ -73,11 +73,11 @@ public class TileMap {
 
 
 
-    public double colisionX(Player player, int velocityX) {
-        int x = (int)player.getPositionX();
-        int y = (int)player.getPositionY();
-        int w = (int)player.getWidth();
-        int h = (int)player.getHeight();
+    public double colisionX(GameObject object, int velocityX) {
+        int x = (int)object.getPositionX();
+        int y = (int)object.getPositionY();
+        int w = (int)object.getWidth();
+        int h = (int)object.getHeight();
         int v = velocityX;
 
 
@@ -115,17 +115,17 @@ public class TileMap {
 
         }
         catch(ArrayIndexOutOfBoundsException e){
-            Log.wtf("TileMap.java","colisionX():object {"+player+"} out of the map;");
+            Log.wtf("TileMap.java","colisionX():object {"+object+"} out of the map;");
         }
 
         return velocityX;
     }
 
-    public int colisionY(Player player, int velocityY) {
-        int x = (int)player.getPositionX();
-        int y = (int)player.getPositionY();
-        int w = (int)player.getWidth();
-        int h = (int)player.getHeight();
+    public int colisionY(GameObject object, int velocityY) {
+        int x = (int) object.getPositionX();
+        int y = (int) object.getPositionY();
+        int w = (int) object.getWidth();
+        int h = (int) object.getHeight();
         int v = velocityY;
 
         String message = "x = " + x + ";\n" +
@@ -162,7 +162,7 @@ public class TileMap {
 
         }
         catch(ArrayIndexOutOfBoundsException e){
-            Log.wtf("TileMap.java","colisionY():object {"+player+"} out of the map;\n"+message);
+            Log.wtf("TileMap.java","colisionY():object {"+ object +"} out of the map;\n"+message);
         }
 
         return velocityY;

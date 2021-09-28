@@ -32,7 +32,7 @@ public class Player extends Circle {
     private final TileMap tilemap;
 
     public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tilemap) {
-        super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius);
+        super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tilemap);
         this.joystick = joystick;
         this.tilemap = tilemap;
 
@@ -41,16 +41,16 @@ public class Player extends Circle {
 
     public void update() {
         // Update velocity based on actuator of joystick
-        velocityX = tilemap.colisionX(this,(int)(joystick.getActuatorX() * MAX_SPEED));
-        velocityY = tilemap.colisionY(this,(int)(joystick.getActuatorY() * MAX_SPEED));
 
-        Log.d("player.java", "update(){\n" +
-                "   positionX="+positionX+";velocityX="+velocityX+";\n" +
-                "   positionY="+positionY+";velocityY="+velocityY+";\n" +
-                "}");
+        updateVelocity((int)(joystick.getActuatorX() * MAX_SPEED), (int)(joystick.getActuatorY() * MAX_SPEED));
 
-        positionX+=velocityX;
-        positionY+=velocityY;
+//        Log.d("player.java", "update(){\n" +
+//                "   positionX="+positionX+";velocityX="+velocityX+";\n" +
+//                "   positionY="+positionY+";velocityY="+velocityY+";\n" +
+//                "}");
+//
+//        positionX+=velocityX;
+//        positionY+=velocityY;
 
         // Update direction
         if (velocityX != 0 || velocityY != 0) {

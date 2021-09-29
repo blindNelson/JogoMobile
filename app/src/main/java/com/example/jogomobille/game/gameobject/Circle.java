@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.jogomobille.game.GameDisplay;
+import com.example.jogomobille.game.map.Mechanics.Colision;
+import com.example.jogomobille.game.map.TileMap;
 
 /**
  * Circle is an abstract class which implements a draw method from GameObject for drawing the object
@@ -14,8 +16,8 @@ public abstract class Circle extends GameObject {
     protected double radius;
     protected Paint paint;
 
-    public Circle(Context context, int color, double positionX, double positionY, double radius) {
-        super(positionX, positionY, radius*2, radius*2);
+    public Circle(Context context, int color, double positionX, double positionY, double radius, Colision tilemap) {
+        super(positionX, positionY, radius*2, radius*2, tilemap);
 
         this.radius = radius;
         paint = new Paint();

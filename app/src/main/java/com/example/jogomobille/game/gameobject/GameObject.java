@@ -1,14 +1,18 @@
 package com.example.jogomobille.game.gameobject;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 import com.example.jogomobille.game.GameDisplay;
+import com.example.jogomobille.game.map.Mechanics.Colision;
+import com.example.jogomobille.game.map.TileMap;
 
 /**
  * GameObject is an abstract class which is the foundation of all world objects in the game.
  */
 public abstract class GameObject {
 
+    private final Colision tilemap;
     protected double width;
     protected double height;
     protected double positionX;
@@ -18,11 +22,12 @@ public abstract class GameObject {
     protected double directionX = 1;
     protected double directionY = 0;
 
-    public GameObject(double positionX, double positionY, double width, double height) {
+    public GameObject(double positionX, double positionY, double width, double height, Colision tilemap) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.width = width;
         this.height = height;
+        this.tilemap = tilemap;
     }
 
     protected static double getDistanceBetweenObjects(GameObject obj1, GameObject obj2) {
@@ -34,6 +39,19 @@ public abstract class GameObject {
 
     public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
     public abstract void update();
+
+    protected void updateVelocity(int vX, int vY){
+        velocityX = tilemap.colisionX(this, vX);
+        velocityY = tilemap.colisionY(this, vY);
+
+        Log.d("player.java", "update(){\n" +
+                "   positionX="+positionX+";velocityX="+velocityX+";\n" +
+                "   positionY="+positionY+";velocityY="+velocityY+";\n" +
+                "}");
+
+        positionX+=velocityX;
+        positionY+=velocityY;
+    }
 
     public double getPositionX() { return positionX; }
 

@@ -18,6 +18,7 @@ public class GameDisplay {
 
 
     public GameDisplay(int widthPixels, int heightPixels, GameObject centerObject) {
+
         this.centerObject = centerObject;
 
         displayCenterX = widthPixels/2.0;
@@ -48,10 +49,10 @@ public class GameDisplay {
 
     public Rect getGameRect() {
         return new Rect(
-                (int) (gameCenterX - widthPixels/2),
-                (int) (gameCenterY - heightPixels/2),
-                (int) (gameCenterX + widthPixels/2),
-                (int) (gameCenterY + heightPixels/2)
+                (int) (gameCenterX - widthPixels/2)+(int)(centerObject.getWidth()/2),
+                (int) (gameCenterY - heightPixels/2)+(int)(centerObject.getHeight()/2),
+                (int) (gameCenterX + widthPixels/2)+(int)(centerObject.getWidth()/2),
+                (int) (gameCenterY + heightPixels/2)+(int)(centerObject.getHeight()/2)
         );
     }
 }

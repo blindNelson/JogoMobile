@@ -11,11 +11,13 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.jogomobille.game.GameDisplay;
-import com.example.jogomobille.game.gameobject.player.Player;
+import com.example.jogomobille.game.gameobject.GameObject;
 import com.example.jogomobille.game.graphics.SpriteSheet;
+import com.example.jogomobille.game.map.Mechanics.Colision;
 
 public class TileMap {
     private final MapLayout mapLayout;
+    private final Colision colision;
     private Tile[][] tilemap;
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
@@ -24,6 +26,7 @@ public class TileMap {
         mapLayout = new MapLayout();
         this.spriteSheet = spriteSheet;
         initializeTileMap();
+        colision = new Colision(this);
     }
 
     private void initializeTileMap() {
@@ -67,104 +70,11 @@ public class TileMap {
 
 
 
-    private boolean isColiding(int x, int y){
+    public boolean isColiding(int x, int y){
         return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS].collide;
     }
 
-
-
-    public double colisionX(Player player, int velocityX) {
-        int x = (int)player.getPositionX();
-        int y = (int)player.getPositionY();
-        int w = (int)player.getWidth();
-        int h = (int)player.getHeight();
-        int v = velocityX;
-
-
-        //colisão com paredes
-        try {
-
-            String message = "x = " + x + ";\n" +
-                    "y = " + y + ";\n" +
-                    "xw = " + (x+w) + ";\n" +
-                    "yh = " + (y+h) + ";\n" +
-                    "v = " + v + ";\n" +
-                    "xv = " + (x+v) + ";\n" +
-                    "xwv = " + (x+w+v) + ";\n";
-
-
-            if(isColiding(x+v, y)||isColiding(x+v, y+h)) {
-
-                velocityX = ( ((x / TILE_WIDTH_PIXELS) * TILE_WIDTH_PIXELS) - x);
-
-                Log.d("TileMap.java", "colisionX():Left of object is colliding;\n"+message +
-                        "fv = " + (velocityX) + ";");
-                return velocityX;
-            }
-
-
-            if(isColiding(x+v+w, y)||isColiding(x+v+w,y+h)) {
-
-                velocityX = ((((x / TILE_WIDTH_PIXELS)+1) * TILE_WIDTH_PIXELS) - x)-1;
-
-                Log.d("TileMap.java", "colisionX():Right of object is colliding;\n"+message +
-                        "fv = " + (velocityX) + ";");
-                return velocityX;
-            }
-
-
-        }
-        catch(ArrayIndexOutOfBoundsException e){
-            Log.wtf("TileMap.java","colisionX():object {"+player+"} out of the map;");
-        }
-
-        return velocityX;
-    }
-
-    public int colisionY(Player player, int velocityY) {
-        int x = (int)player.getPositionX();
-        int y = (int)player.getPositionY();
-        int w = (int)player.getWidth();
-        int h = (int)player.getHeight();
-        int v = velocityY;
-
-        String message = "x = " + x + ";\n" +
-                "y = " + y + ";\n" +
-                "xw = " + (x+w) + ";\n" +
-                "yh = " + (y+h) + ";\n" +
-                "v = " + v + ";\n" +
-                "yv = " + (y+v) + ";\n" +
-                "yhv = " + (y+h+v) + ";\n";
-
-        try {
-
-            if(isColiding(x,y+v)||isColiding(x+w,y+v)) {
-
-                velocityY = (((y / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS) - y);
-
-                Log.d("TileMap.java", "colisionY():top of object is colliding;\n"+message +
-                        "fv = " + (velocityY) + ";");
-                return (int)velocityY;
-
-            }
-
-
-            if(isColiding(x, y+v+h)||isColiding(x+w,y+v+h)) {
-
-                velocityY = ((((y / TILE_HEIGHT_PIXELS)+1) * TILE_HEIGHT_PIXELS) -y)-1;
-
-                Log.d("TileMap.java", "colisionY():bottom of object is colliding;\n"+message +
-                        "fv = " + (velocityY) + ";");
-                return velocityY;
-
-            }
-
-
-        }
-        catch(ArrayIndexOutOfBoundsException e){
-            Log.wtf("TileMap.java","colisionY():object {"+player+"} out of the map;\n"+message);
-        }
-
-        return velocityY;
+    public Colision getColision() {
+        return colision;
     }
 }

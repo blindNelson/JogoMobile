@@ -30,7 +30,7 @@ public class TileMap {
     }
 
     private void initializeTileMap() {
-        int[][] layout = mapLayout.getLayout();
+        byte[][] layout = mapLayout.getLayout();
         tilemap = new Tile[NUMBER_OF_ROW_TILES][NUMBER_OF_COLUMN_TILES];
         for (int iRow = 0; iRow < NUMBER_OF_ROW_TILES; iRow++) {
             for (int iCol = 0; iCol < NUMBER_OF_COLUMN_TILES; iCol++) {

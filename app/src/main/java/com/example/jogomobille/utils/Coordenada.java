@@ -1,4 +1,4 @@
-package com.example.jogomobille.game;
+package com.example.jogomobille.utils;
 
 public class Coordenada {
     //Declara as variáveis

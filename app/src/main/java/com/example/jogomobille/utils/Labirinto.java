@@ -1,6 +1,6 @@
-package com.example.jogomobille.game;
+package com.example.jogomobille.utils;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Labirinto {
 
@@ -22,17 +22,23 @@ public class Labirinto {
                 labirinto[i][j] = 1;
 
         switch (tipo) {
-            case "fixo" -> {
-                entrada = new Coordenada(largura / 2, 0);
-                saida = new Coordenada(largura / 2, altura - 1);
+            case "fixo" :
+            {
+                entrada = new Coordenada(largura / 2 - 1, 0);
+                saida = new Coordenada(largura / 2 - 1, altura - 1);
+                break;
             }
-            case "randomico" -> {
+            case "randomico":
+            {
                 entrada = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, 0);
                 saida = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, altura - 1);
+                break;
             }
-            default -> {
+            default :
+            {
                 entrada = new Coordenada(1, 0);
                 saida = new Coordenada(largura - 2, altura - 1);
+                break;
             }
         }
 

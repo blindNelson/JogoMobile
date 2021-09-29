@@ -8,8 +8,8 @@ import android.graphics.Rect;
 import com.example.jogomobille.R;
 
 public class SpriteSheet {
-    private static final int SPRITE_WIDTH_PIXELS = 64;
-    private static final int SPRITE_HEIGHT_PIXELS = 64;
+    private static final int SPRITE_WIDTH_PIXELS = 128;
+    private static final int SPRITE_HEIGHT_PIXELS = 128;
 
     private Bitmap bitmap;
 

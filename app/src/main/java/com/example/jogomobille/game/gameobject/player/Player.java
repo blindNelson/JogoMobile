@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
+import com.example.jogomobille.game.map.Mechanics.Colision;
 import com.example.jogomobille.game.map.TileMap;
 import com.example.jogomobille.utils.Utils;
 import com.example.jogomobille.game.gamepanel.Joystick;
@@ -24,17 +25,15 @@ import java.util.Map;
  * The player class is an extension of a Circle, which is an extension of GameObject
  */
 public class Player extends Circle {
-    public static final double SPEED_PIXELS_PER_SECOND = 400.0;
+    public static final double SPEED_PIXELS_PER_SECOND = 300.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / Gameloop.MAX_UPS;
 
     private final Joystick joystick;
     private final PlayerState playerState;
-    private final TileMap tilemap;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tilemap) {
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, Colision tilemap) {
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tilemap);
         this.joystick = joystick;
-        this.tilemap = tilemap;
 
         playerState = new PlayerState(this);
     }
@@ -43,14 +42,7 @@ public class Player extends Circle {
         // Update velocity based on actuator of joystick
 
         updateVelocity((int)(joystick.getActuatorX() * MAX_SPEED), (int)(joystick.getActuatorY() * MAX_SPEED));
-
-//        Log.d("player.java", "update(){\n" +
-//                "   positionX="+positionX+";velocityX="+velocityX+";\n" +
-//                "   positionY="+positionY+";velocityY="+velocityY+";\n" +
-//                "}");
-//
-//        positionX+=velocityX;
-//        positionY+=velocityY;
+//        updateVelocity(-5, 0);
 
         // Update direction
         if (velocityX != 0 || velocityY != 0) {

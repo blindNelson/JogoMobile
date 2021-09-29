@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.util.Log;
 
 import com.example.jogomobille.game.GameDisplay;
+import com.example.jogomobille.game.map.Mechanics.Colision;
 import com.example.jogomobille.game.map.TileMap;
 
 /**
@@ -11,7 +12,7 @@ import com.example.jogomobille.game.map.TileMap;
  */
 public abstract class GameObject {
 
-    private final TileMap tilemap;
+    private final Colision tilemap;
     protected double width;
     protected double height;
     protected double positionX;
@@ -21,7 +22,7 @@ public abstract class GameObject {
     protected double directionX = 1;
     protected double directionY = 0;
 
-    public GameObject(double positionX, double positionY, double width, double height, TileMap tilemap) {
+    public GameObject(double positionX, double positionY, double width, double height, Colision tilemap) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.width = width;

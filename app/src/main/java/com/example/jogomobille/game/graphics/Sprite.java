@@ -14,8 +14,8 @@ public class Sprite {
 
     public void draw(Canvas canvas, int x, int y){
 
-        x -= getWidth()/2;
-        y -= getHeight()/2;
+//        x -= getWidth()/2;
+//        y -= getHeight()/2
 
         canvas.drawBitmap(
                 spriteSheet.getBitmap(),

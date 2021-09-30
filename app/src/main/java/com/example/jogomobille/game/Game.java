@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Joystick;
+import com.example.jogomobille.game.graphics.Animator;
 import com.example.jogomobille.game.graphics.SpriteSheet;
 import com.example.jogomobille.game.map.TileMap;
 
@@ -44,10 +45,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         // Initialize game objects
-        joystick = new Joystick(100, 600, 70, 40);
+        joystick = new Joystick(300, 800, 70, 40);
         SpriteSheet spriteSheet = new SpriteSheet(context);
         tilemap = new TileMap(spriteSheet);
-        player = new Player(context, joystick, 272, 144, 16, tilemap.getColision());
+        Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
+        player = new Player(context, joystick, 160, 160, 32, tilemap.getColision(), animator);
 
         //gameScene = new GameScene(getContext(), player);
 

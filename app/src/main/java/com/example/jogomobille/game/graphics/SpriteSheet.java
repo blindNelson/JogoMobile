@@ -19,18 +19,52 @@ public class SpriteSheet {
         this.bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.sprite_sheet, bitmapOptions);
     }
 
+    public Sprite[] getPlayerSpriteArrayDown() {
+        return getPlayerSpriteByIndex(0, 0);
+    }
+
+    public Sprite[] getPlayerSpriteArrayLeft() {
+        return getPlayerSpriteByIndex(0, 1);
+    }
+
+    public Sprite[] getPlayerSpriteArrayRight() {
+        return getPlayerSpriteByIndex(0, 2);
+    }
+
+    public Sprite[] getPlayerSpriteArrayUp() {
+        return getPlayerSpriteByIndex(0, 3);
+    }
+
+    // ----------------------------------------- \\
+
+    public Sprite[] getStaticPlayerSpriteArrayDown() {
+        return getPlayerSpriteByIndex(0, 4);
+    }
+
+    public Sprite[] getStaticPlayerSpriteArrayLeft() {
+        return getPlayerSpriteByIndex(0, 5);
+    }
+
+    public Sprite[] getStaticPlayerSpriteArrayRight() {
+        return getPlayerSpriteByIndex(0, 6);
+    }
+
+    public Sprite[] getStaticPlayerSpriteArrayUp() {
+        return getPlayerSpriteByIndex(0, 7);
+    }
+
     public Bitmap getBitmap() {
         return bitmap;
     }
 
     public Sprite getGroundSprite() {
-        return getSpriteByIndex(0, 0);
+        return getSpriteByIndex(2, 0);
     }
     public Sprite getWallSprite() {
-        return getSpriteByIndex(0, 1);
+        return getSpriteByIndex(2, 1);
     }
     public Sprite getWall2Sprite() {
-        return getSpriteByIndex(0, 2);
+        return getSpriteByIndex(2, 2);
     }
 
     private Sprite getSpriteByIndex(int idxRow, int idxCol) {
@@ -40,5 +74,38 @@ public class SpriteSheet {
                 (idxCol + 1)*SPRITE_WIDTH_PIXELS,
                 (idxRow + 1)*SPRITE_HEIGHT_PIXELS
         ));
+    }
+
+    private Sprite[] getPlayerSpriteByIndex(int idxRow, int idxCol) {
+        Sprite[] ret = new Sprite[4];
+         ret[0] = new Sprite(this, new Rect(
+                idxCol*64,
+                idxRow*64,
+                (idxCol + 1)*64,
+                (idxRow + 1)*64
+        ));
+
+        ret[1] = new Sprite(this, new Rect(
+                idxCol*64,
+                (idxRow + 1)*64,
+                (idxCol + 1)*64,
+                (idxRow + 2)*64
+        ));
+
+        ret[2] = new Sprite(this, new Rect(
+                idxCol*64,
+                (idxRow + 2)*64,
+                (idxCol + 1)*64,
+                (idxRow + 3)*64
+        ));
+
+        ret[3] = new Sprite(this, new Rect(
+                idxCol*64,
+                (idxRow + 3)*64,
+                (idxCol + 1)*64,
+                (idxRow + 4)*64
+        ));
+
+        return ret;
     }
 }

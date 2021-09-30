@@ -1,6 +1,6 @@
 package com.example.jogomobille.game.map;
 
-import com.example.jogomobille.utils.Labirinto;
+import com.example.jogomobille.game.map.Mechanics.Labirinto;
 
 public class MapLayout {
     public static final int TILE_WIDTH_PIXELS = 128;

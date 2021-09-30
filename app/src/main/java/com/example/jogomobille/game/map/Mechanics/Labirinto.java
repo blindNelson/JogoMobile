@@ -1,4 +1,7 @@
-package com.example.jogomobille.utils;
+package com.example.jogomobille.game.map.Mechanics;
+
+import com.example.jogomobille.utils.Coordenada;
+import com.example.jogomobille.utils.Pilha;
 
 import java.util.ArrayList;
 

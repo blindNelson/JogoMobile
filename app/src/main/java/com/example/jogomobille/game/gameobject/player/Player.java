@@ -25,7 +25,7 @@ import java.util.Map;
  * The player class is an extension of a Circle, which is an extension of GameObject
  */
 public class Player extends Circle {
-    public static final double SPEED_PIXELS_PER_SECOND = 300.0;
+    public static final double SPEED_PIXELS_PER_SECOND = 500.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / Gameloop.MAX_UPS;
 
     private final Joystick joystick;

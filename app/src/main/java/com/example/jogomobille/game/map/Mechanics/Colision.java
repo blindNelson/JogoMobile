@@ -48,8 +48,8 @@ public class Colision {
                 velocityX = -(x%TILE_WIDTH_PIXELS);
 
 
-                Log.d("TileMap.java", "colisionX():Left of object is colliding;\n"+//message+
-                        "x+v/Tw = " + ((x+v)/TILE_WIDTH_PIXELS) + ";"+
+                Log.d("TileMap.java", "colisionX():Left of object {"+ object +"} is colliding;\n"+//message+
+                        //"x+v/Tw = " + ((x+v)/TILE_WIDTH_PIXELS) + ";"+
                         "fp = " + positionF + ";\n" +
                         "fv = " + velocityX + ";");
                 return velocityX;
@@ -61,11 +61,12 @@ public class Colision {
                 int positionF = XtoTWP+TwPw;
                 velocityX = positionF-x;
 
-                Log.d("Colision.java", "colisionX():Right of object is colliding;\n"+//message +
-                        "x+v+w/Tw = " + ((x+v+w)/TILE_WIDTH_PIXELS) + ";\n" +
+                Log.d("Colision.java", "colisionX():Right of object {"+ object +"} is colliding;\n"+
+                        //"x+v+w/Tw = " + ((x+v+w)/TILE_WIDTH_PIXELS) + ";\n" +
                         "xIn = "+ xIn + ";xIn/64 = "+(xIn/64)+"\n" +
                         "fp = " + positionF + ";\n" +
                         "fv = " + velocityX + ";");
+
                 return velocityX-1;
             }
 
@@ -88,13 +89,19 @@ public class Colision {
         int YtoTHP = ((y / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS);
 
 
-//        String message = "x = " + x + ";\n" +
-//                "y = " + y + ";\n" +
-//                "xw = " + (x+w) + ";\n" +
-//                "yh = " + (y+h) + ";\n" +
-//                "v = " + v + ";\n" +
-//                "yv = " + (y+v) + ";\n" +
-//                "yhv = " + (y+h+v) + ";\n";
+
+//            String message = "x = " + x + ";" +
+//                    "y = " + y + ";\n" +
+//                    "yw = " + (x+w) + ";" +
+//                    "yh = " + (y+h) + ";\n" +
+//                    "h = " + h + ";" +
+//                    "v = " + v + ";\n" +
+//                    "x+v = " + (y+v) + "; " +
+//                    "y+h+v = " + (y+h+v) + "; " +"x+tpw+v = " + (y+ThPh+v) + "; " +
+//                    "y+h+v+tpw = " + (y+h+v+ThPh) + ";\n" +
+//                    "wT = " + TILE_HEIGHT_PIXELS + ";\n" +
+//                    "Th/Ph = " + ThPh + ";" +
+//                    "(Y/Th)*Tw = " + YtoTHP + ";\n";
 
         try {
 
@@ -103,7 +110,7 @@ public class Colision {
 
                 velocityY = (((y / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS) - y);
 
-                Log.d("TileMap.java", "colisionY():top of object is colliding;\n"+//message +
+                Log.d("TileMap.java", "colisionY():top of object {"+ object +"} is colliding;\n"+//message +
                         "fv = " + (velocityY) + ";");
                 return (int)velocityY;
 
@@ -114,7 +121,7 @@ public class Colision {
                 int positionF = YtoTHP+ThPh;
                 velocityY = (positionF -y)-1;
 
-                Log.d("TileMap.java", "colisionY():bottom of object is colliding;\n"+//message +
+                Log.d("TileMap.java", "colisionY():bottom of object {"+ object +"} is colliding;\n"+//message +
                         "fv = " + (velocityY) + ";");
                 return velocityY;
 

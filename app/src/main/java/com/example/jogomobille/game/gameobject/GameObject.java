@@ -44,7 +44,7 @@ public abstract class GameObject {
         velocityX = tilemap.colisionX(this, vX);
         velocityY = tilemap.colisionY(this, vY);
 
-        Log.d("player.java", "update(){\n" +
+        Log.d("GameObject.java", "update():{\n" +
                 "   positionX="+positionX+";velocityX="+velocityX+";\n" +
                 "   positionY="+positionY+";velocityY="+velocityY+";\n" +
                 "}");

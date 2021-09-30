@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import com.example.jogomobille.game.gameobject.enemy.Dummy;
 import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.game.graphics.SpriteSheet;
@@ -26,11 +27,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Context context;
     private Player player;
     private Joystick joystick;
-    private final TileMap tilemap;
+    private final TileMap tileMap;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
     private GameDisplay gameDisplay;
+    private Dummy todd;
 
     public Game(Context context) {
         super(context);
@@ -46,14 +48,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // Initialize game objects
         joystick = new Joystick(100, 600, 70, 40);
         SpriteSheet spriteSheet = new SpriteSheet(context);
-        tilemap = new TileMap(spriteSheet);
-        player = new Player(context, joystick, 272, 144, 16, tilemap.getColision());
+        tileMap = new TileMap(spriteSheet);
+        player = new Player(context, joystick, 128, 128, 32, tileMap.getColision());
+        todd = new Dummy(context, 164, 164, tileMap.getColision(), tileMap.getMapConfig(), player);
 
         //gameScene = new GameScene(getContext(), player);
 
         // Initialize game panels
         gamePanels = new GamePanels(gameLoop, getContext(), player);
-
 
         // Initialize gameDisplay and center it around the player
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -119,7 +121,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
 
         //gameScene.draw(canvas, gameDisplay);
-        tilemap.draw(canvas, gameDisplay);
+        tileMap.draw(canvas, gameDisplay);
+        todd.draw(canvas,gameDisplay);
         player.draw(canvas, gameDisplay);
         gamePanels.draw(canvas);
 
@@ -132,6 +135,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         player.update();
+        todd.update();
         gamePanels.update();
         //gameScene.update();
 
@@ -140,6 +144,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         joystick.update();
 
     }
+
+
 
     public void pause() {
         gameLoop.stopLoop();

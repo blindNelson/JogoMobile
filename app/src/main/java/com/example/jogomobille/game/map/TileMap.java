@@ -32,8 +32,6 @@ public class TileMap {
         mapConfig = new MapConfig(this);
     }
 
-
-
     private void initializeTileMap() {
         byte[][] layout = mapLayout.getLayout();
         tilemap = new Tile[NUMBER_OF_ROW_TILES][NUMBER_OF_COLUMN_TILES];
@@ -70,7 +68,7 @@ public class TileMap {
         );
     }
 
-    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+    public void draw(Canvas canvas, GameDisplay gameDisplay) throws ArrayIndexOutOfBoundsException {
         canvas.drawBitmap(mapBitmap, gameDisplay.getGameRect(), gameDisplay.DISPLAY_RECT, null);
     }
 

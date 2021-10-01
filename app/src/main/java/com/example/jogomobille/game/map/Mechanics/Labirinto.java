@@ -49,7 +49,7 @@ public class Labirinto {
         Coordenada atual = new Coordenada(entrada);
 
         caminho.guardeUmItem(atual);
-        labirinto[entrada.getY()][entrada.getX()] = 1; //Abrir a entrada
+        labirinto[entrada.getY()][entrada.getX()] = 3; //Abrir a entrada
         atual = new Coordenada(entrada.getX(),entrada.getY()+1);
         caminho.guardeUmItem(atual);
         labirinto[atual.getY()][atual.getX()] = 0;
@@ -115,7 +115,7 @@ public class Labirinto {
             atual = fila.get(escolha);
 
         }while (true);
-        labirinto[saida.getY()][saida.getX()] = 1;
+        labirinto[saida.getY()][saida.getX()] = 4;
     }
 
     public boolean cavavel(int x, int y) {

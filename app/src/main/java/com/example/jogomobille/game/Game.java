@@ -49,7 +49,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         SpriteSheet spriteSheet = new SpriteSheet(context);
         tilemap = new TileMap(spriteSheet);
         Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
-        player = new Player(context, joystick, 160, 160, 32, tilemap.getColision(), animator);
+        player = new Player(context, joystick, 1184, 64, 32, tilemap.getColision(), animator);
 
         //gameScene = new GameScene(getContext(), player);
 
@@ -131,8 +131,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         // Update game stateplayer.update();
-
-
         player.update();
         gamePanels.update();
         //gameScene.update();

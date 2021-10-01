@@ -108,36 +108,6 @@ public class Player extends Circle {
             }
         }
 
-        /*if (directionY < 0) { // Up
-            if (directionX < 0) { // Left
-                if (directionX < directionY) {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayLeft());
-                } else {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayUp());
-                }
-            } else { // Right
-                if (directionX > -directionY) {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayRight());
-                } else {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayUp());
-                }
-            }
-        } else { // Down
-            if (directionX < 0) { // Left
-                if (directionX < -directionY) {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayLeft());
-                } else {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayDown());
-                }
-            } else { // Right
-                if (directionX > directionY) {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayRight());
-                } else {
-                    animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayDown());
-                }
-            }
-        }*/
-
         animator.draw(canvas, gameDisplay, this);
 
     }

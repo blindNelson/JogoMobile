@@ -66,6 +66,10 @@ public class SpriteSheet {
     public Sprite getWall2Sprite() {
         return getSpriteByIndex(2, 2);
     }
+    public Sprite getEntranceSprite() {
+        return getSpriteByIndex(2, 3);
+    }
+    public Sprite getExitSprite() { return getSpriteByIndex(2, 4); }
 
     private Sprite getSpriteByIndex(int idxRow, int idxCol) {
         return new Sprite(this, new Rect(

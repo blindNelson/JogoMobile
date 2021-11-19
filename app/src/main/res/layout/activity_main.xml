@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background_main">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -93,8 +94,6 @@
         </LinearLayout>
     </LinearLayout>
 
-<<<<<<< Updated upstream
-=======
     <ImageButton
         android:id="@+id/illyButton"
         android:layout_width="229dp"
@@ -117,6 +116,4 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
->>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

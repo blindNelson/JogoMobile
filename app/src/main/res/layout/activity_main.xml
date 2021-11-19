@@ -43,7 +43,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/scoreButton"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -59,7 +59,7 @@
                 app:strokeWidth="2dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/startButton"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -76,7 +76,7 @@
                 app:strokeWidth="2dp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/exitButton"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"

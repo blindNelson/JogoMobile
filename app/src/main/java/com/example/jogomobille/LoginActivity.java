@@ -3,7 +3,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jogomobille.utils.Session;
-
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,19 +37,19 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 username = usernameTxt.getText().toString();
                 password = passwordTxt.getText().toString();
+
                 Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
                 final InterfaceAPI api = retrofit.create(InterfaceAPI.class);
-                LoginRequest loginRequest = new LoginRequest(username,password);
-                Call<LoginResponse> call = api.checkLogin(loginRequest);
+                LoginCadastroRequest loginCadastroRequest = new LoginCadastroRequest(username,password);
+                Call<LoginResponse> call = api.login(loginCadastroRequest);
+
                 call.enqueue(new Callback<LoginResponse>() {
 
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "deu certo", Toast.LENGTH_LONG).show();
-
                             LoginResponse loginResponse = response.body();
-                            if (loginResponse.getMessage().equals("Authentication Successful!")) {
+                            if (loginResponse.getMessage().equals("Autenticacao realizada com sucesso!")) {
                                 Session session = new Session(LoginActivity.this);
                                 session.setIdNome(loginResponse.idUsuario,loginResponse.nomeUsuario);
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -74,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                         Log.e("TAG", t.toString());
                         t.printStackTrace();
                         Toast.makeText(getApplicationContext(), "Não Conseguiu conectar com a API", Toast.LENGTH_LONG).show();
-
                     }
                 });
             }

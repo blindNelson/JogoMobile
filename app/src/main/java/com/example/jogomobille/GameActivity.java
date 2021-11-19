@@ -12,7 +12,7 @@ import com.example.jogomobille.game.Game;
 /**
  * Main activity is the entry point to our application
  */
-public class MainActivity2 extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private Game game;
 

@@ -1,11 +1,11 @@
 package com.example.jogomobille;
 
-public class LoginRequest {
+public class LoginCadastroRequest {
 
     String nomeUsuario;
     String senha;
 
-    public LoginRequest(String nomeUsuario, String senha) {
+    public LoginCadastroRequest(String nomeUsuario, String senha) {
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
     }

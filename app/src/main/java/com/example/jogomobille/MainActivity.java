@@ -9,17 +9,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-
-import com.example.jogomobille.utils.Session;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    Button startButton, scoreButton, exitButton;
-    ImageButton illyButton;
-    TextView usernameTxt;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,48 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        startButton = findViewById(R.id.startButton);
-        scoreButton = findViewById(R.id.scoreButton);
-        exitButton = findViewById(R.id.exitButton);
+        /*Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        startActivity(intent);*/
 
-        illyButton =  findViewById(R.id.illyButton);
-        usernameTxt = findViewById(R.id.usernameTxt);
+        btn = findViewById(R.id.button);
 
-        Session session = new Session(MainActivity.this);
-        if(session.getIdUsuario() != 0)
-            usernameTxt.setText(session.getNomeUsuario());
-
-        startButton.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(session.getIdUsuario() == 0)
-                {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-                else
-                {
-                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-        illyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
-            }
-        });
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        scoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
             }
         });

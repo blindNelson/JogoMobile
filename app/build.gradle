@@ -35,10 +35,4 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    //Conexão externa com backend (api)
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-
-    //Converte Json para objeto java e vice-versa
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 }

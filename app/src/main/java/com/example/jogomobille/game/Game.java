@@ -2,20 +2,15 @@ package com.example.jogomobille.game;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.CalendarView;
 
 import androidx.annotation.NonNull;
 
-import com.example.jogomobille.MainActivity;
-import com.example.jogomobille.MainActivity2;
-import com.example.jogomobille.TelaDeMorte;
+import com.example.jogomobille.GameActivity;
 import com.example.jogomobille.game.gameobject.Circle;
 import com.example.jogomobille.game.gameobject.Enemy;
 import com.example.jogomobille.game.gameobject.player.Player;
@@ -46,11 +41,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final TileMap tilemap;
     private Canvas canvas;
 
-    public void setActivity2(MainActivity2 activity2) {
+    public void setActivity2(GameActivity activity2) {
         this.activity2 = activity2;
     }
 
-    private MainActivity2 activity2;
+    private GameActivity activity2;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;

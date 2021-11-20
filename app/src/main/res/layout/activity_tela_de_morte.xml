@@ -5,7 +5,7 @@
     android:theme="@android:style/Theme.Dialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaDeMorte">
+    tools:context=".TelaDeMorteActivity">
 
     <TextView
         android:id="@+id/textView"

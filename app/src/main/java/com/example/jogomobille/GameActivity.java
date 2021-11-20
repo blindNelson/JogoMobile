@@ -13,7 +13,7 @@ import com.example.jogomobille.game.Game;
 /**
  * Main activity is the entry point to our application
  */
-public class MainActivity2 extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private Game game;
 
@@ -75,7 +75,7 @@ public class MainActivity2 extends AppCompatActivity {
     public void morreu() {
         Log.d("MAIANIANIAANNSAAAAAAAAAAAAAAAAAAAAAAAAA", "morreu: sim ele morreu");
         finish();
-        startActivity(new Intent(this, TelaDeMorte.class));
+        startActivity(new Intent(this, TelaDeMorteActivity.class));
     }
 
     public void fugiu() {

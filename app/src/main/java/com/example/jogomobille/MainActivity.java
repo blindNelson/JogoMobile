@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LevelDifficultyActivity.class);
                     startActivity(intent);
                 }
             }

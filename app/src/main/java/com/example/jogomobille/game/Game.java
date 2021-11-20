@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import com.example.jogomobille.GameActivity;
+import com.example.jogomobille.LevelDifficultyActivity;
 import com.example.jogomobille.game.gameobject.Circle;
 import com.example.jogomobille.game.gameobject.Enemy;
 import com.example.jogomobille.game.gameobject.player.Player;
@@ -19,6 +20,7 @@ import com.example.jogomobille.game.graphics.Animator;
 import com.example.jogomobille.game.graphics.EnemyAnimator;
 import com.example.jogomobille.game.graphics.SpriteSheet;
 import com.example.jogomobille.game.map.TileMap;
+import com.example.jogomobille.utils.LevelDifficulty;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,8 +52,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
     private GameDisplay gameDisplay;
-
-    public Game(Context context) {
+    public Game(Context context,LevelDifficulty levelDifficulty) {
         super(context);
         this.context = context;
 
@@ -65,7 +66,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // Initialize game objects
         joystick = new Joystick(300, 800, 70, 40);
         spriteSheet = new SpriteSheet(context);
-        tilemap = new TileMap(spriteSheet);
+        tilemap = new TileMap(spriteSheet, levelDifficulty);
         Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
         player = new Player(context, joystick, 1184, 64, 32, tilemap.getColision(), animator);
         EnemyAnimator enemyAnimator = new EnemyAnimator(spriteSheet.getEnemySpriteArrayDown());

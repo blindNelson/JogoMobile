@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.jogomobille.game.Game;
+import com.example.jogomobille.utils.LevelDifficulty;
 
 /**
  * Main activity is the entry point to our application
@@ -31,9 +32,9 @@ public class GameActivity extends AppCompatActivity {
         );
 
         getSupportActionBar().hide();
-
+        LevelDifficulty levelDifficulty = new LevelDifficulty(GameActivity.this);
         // Set content view to game, so that objects in the Game class can be rendered to the screen
-        game = new Game(this);
+        game = new Game(this,levelDifficulty);
 
         game.setActivity2(this);
 

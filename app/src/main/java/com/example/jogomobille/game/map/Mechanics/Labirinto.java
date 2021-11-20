@@ -12,8 +12,8 @@ public class Labirinto {
     byte[][] labirinto;
 
     public Labirinto(int fase, int dificuldade, String tipo) throws Exception {
-        if(fase < 1)
-            fase = 1;
+        if(fase < 0)
+            fase *= -1;
 
         largura = fase * 2 + 1;
         altura  = fase * 2 + 1;
@@ -27,8 +27,8 @@ public class Labirinto {
         switch (tipo)
         {
             case "fixo" :
-                entrada = new Coordenada(largura / 2 -1, 0);
-                saida = new Coordenada(largura / 2 - 1, altura - 1);
+                entrada = new Coordenada(largura / 2, 0);
+                saida = new Coordenada(largura / 2, altura - 1);
                 break;
             case "randomico":
                 entrada = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, 0);

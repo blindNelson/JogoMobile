@@ -1,18 +1,25 @@
 package com.example.jogomobille.game.map;
 
+import com.example.jogomobille.GameActivity;
+import com.example.jogomobille.LevelDifficultyActivity;
 import com.example.jogomobille.game.map.Mechanics.Labirinto;
+import com.example.jogomobille.utils.LevelDifficulty;
 
 public class MapLayout {
     public static final int TILE_WIDTH_PIXELS = 128;
     public static final int TILE_HEIGHT_PIXELS = 128;
-    public static final int DIFICULDADE = 6;
-    public static final int FASE = 10;
-    public static final int NUMBER_OF_ROW_TILES = 2 * FASE + 1;
-    public static final int NUMBER_OF_COLUMN_TILES = 2 * FASE + 1;
+    public static int DIFFICULT = 6;
+    public static int LEVEL = 10;
+    public static int NUMBER_OF_ROW_TILES = 2 * LEVEL + 1;
+    public static int NUMBER_OF_COLUMN_TILES = 2 * LEVEL + 1;
 
     private static byte[][] layout;
 
-    public MapLayout() {
+    public MapLayout(LevelDifficulty levelDifficulty) {
+        LEVEL = levelDifficulty.getLevel() + 3;
+        DIFFICULT = levelDifficulty.getDifficulty() + 6;
+        NUMBER_OF_ROW_TILES = 2 * LEVEL + 1;
+        NUMBER_OF_COLUMN_TILES = 2 * LEVEL + 1;
         initializeLayout();
     }
 
@@ -25,26 +32,8 @@ public class MapLayout {
     }
 
     private void initializeLayout() {
-        /*layout = new byte[][] {
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-        };*/
-
         try {
-            Labirinto lab = new Labirinto(FASE, DIFICULDADE, "fixo");
+            Labirinto lab = new Labirinto(LEVEL, DIFFICULT, "fixo");
             layout = lab.getLabirinto();
         } catch (Exception e) {
             e.printStackTrace();

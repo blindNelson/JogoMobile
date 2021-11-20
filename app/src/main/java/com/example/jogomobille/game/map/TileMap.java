@@ -14,6 +14,7 @@ import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.gameobject.GameObject;
 import com.example.jogomobille.game.graphics.SpriteSheet;
 import com.example.jogomobille.game.map.Mechanics.Colision;
+import com.example.jogomobille.utils.LevelDifficulty;
 
 public class TileMap {
     private final MapLayout mapLayout;
@@ -22,8 +23,8 @@ public class TileMap {
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
 
-    public TileMap(SpriteSheet spriteSheet) {
-        mapLayout = new MapLayout();
+    public TileMap(SpriteSheet spriteSheet, LevelDifficulty levelDifficulty) {
+        mapLayout = new MapLayout(levelDifficulty);
         this.spriteSheet = spriteSheet;
         initializeTileMap();
         colision = new Colision(this);

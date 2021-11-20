@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,7 +28,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set window to fullscreen (will hide status bar)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = this.getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+
         loginButton = findViewById(R.id.loginButton);
         usernameTxt = findViewById((R.id.usernameTxt));
         passwordTxt = findViewById((R.id.passwordTxt));
@@ -49,19 +60,15 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.isSuccessful()) {
                             LoginResponse loginResponse = response.body();
-                            if (loginResponse.getMessage().equals("Autenticacao realizada com sucesso!")) {
-                                Session session = new Session(LoginActivity.this);
-                                session.setIdNome(loginResponse.idUsuario,loginResponse.nomeUsuario);
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                            else {
-                                Toast.makeText(getApplicationContext(), "Usuario ou senha Inválidos.", Toast.LENGTH_LONG).show();
-                            }
+                            Session session = new Session(LoginActivity.this);
+                            assert loginResponse != null;
+                            session.setIdNome(loginResponse.idUsuario,loginResponse.nomeUsuario);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(), "Não obteve resposta da API", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Usuario ou senha Inválidos.", Toast.LENGTH_LONG).show();
                         }
                     }
 

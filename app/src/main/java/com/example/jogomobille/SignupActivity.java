@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,12 +24,20 @@ public class SignupActivity extends AppCompatActivity {
     private Button cadastroButton;
     private EditText usernameTxt, passwordTxt, confirmPasswordTxt;
     private String username,password, confirmPassword;
-    private TextView loginTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        // Set window to fullscreen (will hide status bar)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = this.getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_login);
+
         cadastroButton = findViewById(R.id.cadastroButton);
         usernameTxt = findViewById((R.id.usernameTxt));
         passwordTxt = findViewById((R.id.passwordTxt));

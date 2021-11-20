@@ -52,10 +52,10 @@
                 android:fontFamily="@font/yatra"
                 android:text="Score"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:cornerRadius="0dp"
-                app:strokeColor="#FFFFFF"
+                app:strokeColor="@color/white"
                 app:strokeWidth="2dp" />
 
             <Button
@@ -69,10 +69,10 @@
                 android:fontFamily="@font/yatra"
                 android:text="Start"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:cornerRadius="0dp"
-                app:strokeColor="#FFFFFF"
+                app:strokeColor="@color/white"
                 app:strokeWidth="2dp" />
 
             <Button
@@ -85,10 +85,10 @@
                 android:fontFamily="@font/yatra"
                 android:text="Exit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:cornerRadius="0dp"
-                app:strokeColor="#FFFFFF"
+                app:strokeColor="@color/white"
                 app:strokeWidth="2dp" />
 
         </LinearLayout>

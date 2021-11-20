@@ -2,6 +2,7 @@ package com.example.jogomobille;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< Updated upstream
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,11 +40,35 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         cadastroButton = findViewById(R.id.cadastroButton);
+=======
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import retrofit2.Retrofit;
+
+public class SignupActivity extends AppCompatActivity {
+    private Button confirmButton;
+    private EditText usernameTxt, passwordTxt, confirmPasswordTxt;
+    private String username,password, confirmPassword;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
+
+        confirmButton = findViewById(R.id.confirmButton);
+>>>>>>> Stashed changes
         usernameTxt = findViewById((R.id.usernameTxt));
         passwordTxt = findViewById((R.id.passwordTxt));
         confirmPasswordTxt = findViewById((R.id.confirmPasswordTxt));
 
+<<<<<<< Updated upstream
         cadastroButton.setOnClickListener(new View.OnClickListener() {
+=======
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+>>>>>>> Stashed changes
             @Override
             public void onClick(View view) {
                 username = usernameTxt.getText().toString();
@@ -51,16 +76,22 @@ public class SignupActivity extends AppCompatActivity {
                 confirmPassword = confirmPasswordTxt.getText().toString();
                 if(!password.equals(confirmPassword))
                     Toast.makeText(getApplicationContext(), "Senhas não coincidem!", Toast.LENGTH_LONG).show();
+<<<<<<< Updated upstream
                 else if(username.length() < 1)
                     Toast.makeText(getApplicationContext(), "Digite seu nome de usuario!", Toast.LENGTH_LONG).show();
                 else if(password.length() < 5)
                     Toast.makeText(getApplicationContext(), "Digite uma senha com pelo menos 5 caracteres!", Toast.LENGTH_LONG).show();
                 else if(username.contains(" "))
                     Toast.makeText(getApplicationContext(), "Seu nome de usuario não pode ter espaços!", Toast.LENGTH_LONG).show();
+=======
+                else if(username.length() < 3)
+                    Toast.makeText(getApplicationContext(), "Nome de usuario inválido!", Toast.LENGTH_LONG).show();
+>>>>>>> Stashed changes
                 else
                 {
                     Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
                     final InterfaceAPI api = retrofit.create(InterfaceAPI.class);
+<<<<<<< Updated upstream
                     LoginCadastroRequest cadastroRequest = new LoginCadastroRequest(username,password);
                     Call<String> call = api.cadastro(cadastroRequest);
 
@@ -88,6 +119,9 @@ public class SignupActivity extends AppCompatActivity {
                     });
                 }
 
+=======
+                }
+>>>>>>> Stashed changes
             }
         });
     }

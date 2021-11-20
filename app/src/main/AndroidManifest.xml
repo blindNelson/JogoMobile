@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jogomobille">
+<<<<<<< Updated upstream
+=======
+
+    <uses-permission android:name="android.permission.INTERNET" />
+>>>>>>> Stashed changes
 
     <application
         android:allowBackup="true"
@@ -10,7 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JogoMobille">
         <activity
+<<<<<<< Updated upstream
             android:name=".TelaDeMorte"
+=======
+            android:name=".SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+>>>>>>> Stashed changes
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -25,7 +37,7 @@
         <activity
             android:name=".MainActivity2"
             android:exported="true"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

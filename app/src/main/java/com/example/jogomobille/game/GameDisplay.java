@@ -47,6 +47,14 @@ public class GameDisplay {
         return y + gameToDisplayCoordinatesOffsetY;
     }
 
+    public int getHeightPixels() {
+        return heightPixels;
+    }
+
+    public int getWidthPixels() {
+        return widthPixels;
+    }
+
     public Rect getGameRect() {
         return new Rect(
                 (int) (gameCenterX - widthPixels/2)+(int)(centerObject.getWidth()/2),

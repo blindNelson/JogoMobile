@@ -36,15 +36,16 @@ public class Joystick {
         /*******/
 
         outerCirclePaint = new Paint();
-        outerCirclePaint.setColor(Color.GRAY);
+        outerCirclePaint.setColor(Color.DKGRAY);
         outerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         innerCirclePaint = new Paint();
-        innerCirclePaint.setColor(Color.RED);
+        innerCirclePaint.setColor(Color.GRAY);
         innerCirclePaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     public void draw(Canvas canvas) {
+        canvas.scale((float)0.5, (float)0.5);
         canvas.drawCircle(
                 outerCircleCenterPositionX,
                 outerCircleCenterPositionY,

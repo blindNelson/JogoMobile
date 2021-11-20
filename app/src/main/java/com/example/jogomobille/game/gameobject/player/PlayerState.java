@@ -12,7 +12,7 @@ public class PlayerState {
 
     public PlayerState(Player player){
         this.player = player;
-        this.state = State.NOT_MOVING;
+        this.state = State.IS_MOVING;
     }
 
     public State getState(){

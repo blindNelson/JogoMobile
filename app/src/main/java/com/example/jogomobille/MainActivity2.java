@@ -2,6 +2,7 @@ package com.example.jogomobille;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -33,6 +34,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         // Set content view to game, so that objects in the Game class can be rendered to the screen
         game = new Game(this);
+
+        game.setActivity2(this);
 
         setContentView(game);
 
@@ -67,5 +70,15 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
+    }
+
+    public void morreu() {
+        Log.d("MAIANIANIAANNSAAAAAAAAAAAAAAAAAAAAAAAAA", "morreu: sim ele morreu");
+        finish();
+        startActivity(new Intent(this, TelaDeMorte.class));
+    }
+
+    public void fugiu() {
+
     }
 }

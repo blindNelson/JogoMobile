@@ -37,10 +37,8 @@ public class Animator {
     }
 
     private void toggleIMF() {
-        if(idxMovingFrame == 1)
-            idxMovingFrame = 2;
-        else
-            idxMovingFrame = 1;
+        idxMovingFrame++;
+        if (idxMovingFrame > 3) idxMovingFrame = 0;
     }
 
     public void drawFrame(Canvas canvas, GameDisplay gameDisplay, Player player, Sprite sprite){

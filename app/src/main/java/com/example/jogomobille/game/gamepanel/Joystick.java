@@ -45,6 +45,7 @@ public class Joystick {
     }
 
     public void draw(Canvas canvas) {
+        canvas.scale((float)0.5, (float)0.5);
         canvas.drawCircle(
                 outerCircleCenterPositionX,
                 outerCircleCenterPositionY,

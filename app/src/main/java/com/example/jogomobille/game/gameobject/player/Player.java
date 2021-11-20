@@ -62,7 +62,7 @@ public class Player extends Circle {
         playerState.update();
     }
 
-    private enum Direction {
+    public enum Direction {
         UP,
         DOWN,
         LEFT,

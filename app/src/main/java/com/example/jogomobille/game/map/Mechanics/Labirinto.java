@@ -11,12 +11,12 @@ public class Labirinto {
     Coordenada entrada, saida;
     byte[][] labirinto;
 
-    public Labirinto(int dificuldade, String tipo) throws Exception {
-        if(dificuldade < 1)
-            dificuldade = 1;
+    public Labirinto(int fase, int dificuldade, String tipo) throws Exception {
+        if(fase < 1)
+            fase = 1;
 
-        largura = dificuldade * 2 + 1;
-        altura  = dificuldade * 2 + 1;
+        largura = fase * 2 + 1;
+        altura  = fase * 2 + 1;
 
         labirinto = new byte[altura][largura];
 
@@ -24,25 +24,20 @@ public class Labirinto {
             for(int j=0; j < largura; j++)
                 labirinto[i][j] = 1;
 
-        switch (tipo) {
+        switch (tipo)
+        {
             case "fixo" :
-            {
-                entrada = new Coordenada(largura / 2 - 1, 0);
+                entrada = new Coordenada(largura / 2 -1, 0);
                 saida = new Coordenada(largura / 2 - 1, altura - 1);
                 break;
-            }
             case "randomico":
-            {
                 entrada = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, 0);
                 saida = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, altura - 1);
                 break;
-            }
-            default :
-            {
+            default:
                 entrada = new Coordenada(1, 0);
                 saida = new Coordenada(largura - 2, altura - 1);
                 break;
-            }
         }
 
         Pilha<Coordenada> caminho = new Pilha<>(largura * altura);
@@ -76,20 +71,21 @@ public class Labirinto {
             else
                 nUnico++;
 
-            if(nUnico > 6)
+            if(nUnico > dificuldade)
             {
                 byte rand = (byte)(4 * Math.random());
                 switch (rand)
                 {
                     case 0: if(cavavel(atual.getX()+1,atual.getY()))
-                        cavar(new Coordenada(atual.getX()+1,atual.getY())); break;
+                    { cavar(new Coordenada(atual.getX()+1,atual.getY())); break;}
                     case 1: if(cavavel(atual.getX()-1,atual.getY()))
-                        cavar(new Coordenada(atual.getX()-1,atual.getY())); break;
+                    { cavar(new Coordenada(atual.getX()-1,atual.getY())); break;}
                     case 2: if(cavavel(atual.getX(),atual.getY()+1))
-                        cavar(new Coordenada(atual.getX(),atual.getY()+1)); break;
+                    { cavar(new Coordenada(atual.getX(),atual.getY()+1)); break;}
                     case 3: if(cavavel(atual.getX(),atual.getY()-1))
-                        cavar(new Coordenada(atual.getX(),atual.getY()-1)); break;
+                    { cavar(new Coordenada(atual.getX(),atual.getY()-1)); break;}
                 }
+                nUnico = 0;
             }
 
             if (fila.isEmpty())//Regressao
@@ -147,8 +143,8 @@ public class Labirinto {
                 {
                     case 0: res.append(' '); break;
                     case 1: res.append('#'); break;
-                    case 8: res.append('E'); break;
-                    case 9: res.append('S'); break;
+                    case 3: res.append('E'); break;
+                    case 4: res.append('S'); break;
                 }
             }
             res.append("\n");

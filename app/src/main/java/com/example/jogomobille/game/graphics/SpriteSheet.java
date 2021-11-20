@@ -53,6 +53,24 @@ public class SpriteSheet {
         return getPlayerSpriteByIndex(0, 7);
     }
 
+    // ----------------------------------------- \\
+
+    public Sprite[] getEnemySpriteArrayDown() {
+        return getPlayerSpriteByIndex(6, 0);
+    }
+
+    public Sprite[] getEnemySpriteArrayUp() {
+        return getPlayerSpriteByIndex(6, 1);
+    }
+
+    public Sprite[] getEnemySpriteArrayRight() {
+        return getPlayerSpriteByIndex(6, 2);
+    }
+
+    public Sprite[] getEnemySpriteArrayLeft() {
+        return getPlayerSpriteByIndex(6, 3);
+    }
+
     public Bitmap getBitmap() {
         return bitmap;
     }

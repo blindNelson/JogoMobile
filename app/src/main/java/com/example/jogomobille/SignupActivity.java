@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
 
         cadastroButton = findViewById(R.id.cadastroButton);
         usernameTxt = findViewById((R.id.usernameTxt));

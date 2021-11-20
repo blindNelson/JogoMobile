@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background_main">
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="597dp"
         android:layout_height="201dp"
         android:background="@drawable/shape"
@@ -23,13 +21,13 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-10dp"
             android:fontFamily="@font/yatra"
             android:paddingTop="15dp"
+            android:layout_marginBottom="-10dp"
             android:text="ABYSS PIRAMID"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="60sp" />
+            android:textSize="60dp" />
 
         <View
             android:layout_width="match_parent"
@@ -43,7 +41,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/scoreButton"
+                android:id="@+id/button2"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -52,14 +50,14 @@
                 android:fontFamily="@font/yatra"
                 android:text="Score"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
                 app:cornerRadius="0dp"
-                app:strokeColor="@color/white"
+                app:strokeColor="#FFFFFF"
                 app:strokeWidth="2dp" />
 
             <Button
-                android:id="@+id/startButton"
+                android:id="@+id/button"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -69,14 +67,14 @@
                 android:fontFamily="@font/yatra"
                 android:text="Start"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
                 app:cornerRadius="0dp"
-                app:strokeColor="@color/white"
+                app:strokeColor="#FFFFFF"
                 app:strokeWidth="2dp" />
 
             <Button
-                android:id="@+id/exitButton"
+                android:id="@+id/button4"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -85,35 +83,13 @@
                 android:fontFamily="@font/yatra"
                 android:text="Exit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
                 app:cornerRadius="0dp"
-                app:strokeColor="@color/white"
+                app:strokeColor="#FFFFFF"
                 app:strokeWidth="2dp" />
 
         </LinearLayout>
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/illyButton"
-        android:layout_width="229dp"
-        android:layout_height="219dp"
-        android:layout_marginStart="600dp"
-        android:layout_marginTop="252dp"
-        android:background="@drawable/illy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/usernameTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/yatra"
-        android:text="Login ->"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/illyButton"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

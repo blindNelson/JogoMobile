@@ -2,18 +2,32 @@ package com.example.jogomobille.game;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.CalendarView;
 
 import androidx.annotation.NonNull;
 
+import com.example.jogomobille.MainActivity;
+import com.example.jogomobille.MainActivity2;
+import com.example.jogomobille.TelaDeMorte;
+import com.example.jogomobille.game.gameobject.Circle;
+import com.example.jogomobille.game.gameobject.Enemy;
 import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Joystick;
+import com.example.jogomobille.game.graphics.Animator;
+import com.example.jogomobille.game.graphics.EnemyAnimator;
 import com.example.jogomobille.game.graphics.SpriteSheet;
 import com.example.jogomobille.game.map.TileMap;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Game manages all objects in the game and its responsible for updating all states and render all
@@ -21,12 +35,22 @@ import com.example.jogomobille.game.map.TileMap;
  */
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    private final SpriteSheet spriteSheet;
     //private final GameScene gameScene;
     private GamePanels gamePanels;
     private Context context;
     private Player player;
+    private Enemy enemy;
     private Joystick joystick;
+    private List<Enemy> enemyList = new ArrayList<Enemy>();
     private final TileMap tilemap;
+    private Canvas canvas;
+
+    public void setActivity2(MainActivity2 activity2) {
+        this.activity2 = activity2;
+    }
+
+    private MainActivity2 activity2;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
@@ -44,10 +68,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         // Initialize game objects
-        joystick = new Joystick(100, 600, 70, 40);
-        SpriteSheet spriteSheet = new SpriteSheet(context);
+        joystick = new Joystick(300, 800, 70, 40);
+        spriteSheet = new SpriteSheet(context);
         tilemap = new TileMap(spriteSheet);
-        player = new Player(context, joystick, 272, 144, 16, tilemap.getColision());
+        Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
+        player = new Player(context, joystick, 1184, 64, 32, tilemap.getColision(), animator);
+        EnemyAnimator enemyAnimator = new EnemyAnimator(spriteSheet.getEnemySpriteArrayDown());
+        enemy = new Enemy(context, player, 1200, 1000, 32, tilemap.getColision(), enemyAnimator);
+        enemyList.add(enemy);
 
         //gameScene = new GameScene(getContext(), player);
 
@@ -58,13 +86,15 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // Initialize gameDisplay and center it around the player
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        gameDisplay = new GameDisplay(displayMetrics.widthPixels, displayMetrics.heightPixels, player);
+        gameDisplay = new GameDisplay(displayMetrics.widthPixels/2, displayMetrics.heightPixels/2, player);
 
         setFocusable(true);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        if (joystick == null) return true;
 
         // Handle touch event actions
         switch (event.getActionMasked()) {
@@ -117,10 +147,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        this.canvas = canvas;
 
         //gameScene.draw(canvas, gameDisplay);
         tilemap.draw(canvas, gameDisplay);
         player.draw(canvas, gameDisplay);
+
+        for (Enemy enemy : enemyList) {
+            enemy.draw(canvas, gameDisplay);
+        }
+
         gamePanels.draw(canvas);
 
         joystick.draw(canvas);
@@ -129,20 +165,56 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         // Update game stateplayer.update();
-
-
         player.update();
-        gamePanels.update();
+
+        if (gamePanels != null) {
+            gamePanels.update();
+        }
+
         //gameScene.update();
+
+        /*if (Enemy.readyToSpawn()) {
+            EnemyAnimator enemyAnimator = new EnemyAnimator(spriteSheet.getEnemySpriteArrayDown());
+            enemyList.add(new Enemy(getContext(), player, tilemap.getColision(), enemyAnimator));
+        }*/
+
+        for (Enemy enemy : enemyList) {
+            enemy.update();
+        }
+
+        Iterator<Enemy> iteratorEnemy = enemyList.iterator();
+        while (iteratorEnemy.hasNext()) {
+            Circle enemy = iteratorEnemy.next();
+            if (Circle.isColliding(enemy, player)) {
+                // Remove enemy if it collides with the player
+                iteratorEnemy.remove();
+                // player.setHealthPoints(player.getHealthPoints() - 1);
+                morreu();
+                continue;
+            }
+        }
+
+        /*if (Circle.isColliding(enemy, player)) {
+            enemy = null;
+        }*/
 
         gameDisplay.update();
 
-        joystick.update();
-
+        if (joystick != null) {
+            joystick.update();
+        }
     }
 
     public void pause() {
         gameLoop.stopLoop();
     }
 
+    public void morreu() {
+        //pause();
+        activity2.morreu();
+    }
+
+    public void fugiu() {
+        gameLoop.stopLoop();
+    }
 }

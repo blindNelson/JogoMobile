@@ -65,6 +65,7 @@ public class TileMap {
 
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        canvas.scale((float)2, (float)2);
         canvas.drawBitmap(mapBitmap, gameDisplay.getGameRect(), gameDisplay.DISPLAY_RECT, null);
     }
 

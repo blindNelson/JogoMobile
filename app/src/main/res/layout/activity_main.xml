@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="597dp"
         android:layout_height="201dp"
-        android:background="@drawable/shape"
+        android:background="@drawable/shape2"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,14 +28,14 @@
             android:paddingTop="15dp"
             android:text="ABYSS PIRAMID"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/WhiteSmoke"
             android:textSize="60sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_margin="7dp"
-            android:background="@android:color/white" />
+            android:background="@color/WhiteSmoke" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,10 +52,10 @@
                 android:fontFamily="@font/yatra"
                 android:text="Score"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
+                android:textColor="@color/WhiteSmoke"
                 android:textSize="20sp"
                 app:cornerRadius="0dp"
-                app:strokeColor="@color/white"
+                app:strokeColor="@color/WhiteSmoke"
                 app:strokeWidth="2dp" />
 
             <Button
@@ -69,10 +69,10 @@
                 android:fontFamily="@font/yatra"
                 android:text="Start"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
+                android:textColor="@color/WhiteSmoke"
                 android:textSize="20sp"
                 app:cornerRadius="0dp"
-                app:strokeColor="@color/white"
+                app:strokeColor="@color/WhiteSmoke"
                 app:strokeWidth="2dp" />
 
             <Button
@@ -85,10 +85,10 @@
                 android:fontFamily="@font/yatra"
                 android:text="Exit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
+                android:textColor="@color/WhiteSmoke"
                 android:textSize="20sp"
                 app:cornerRadius="0dp"
-                app:strokeColor="@color/white"
+                app:strokeColor="@color/WhiteSmoke"
                 app:strokeWidth="2dp" />
 
         </LinearLayout>
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/yatra"
         android:text="Login ->"
-        android:textColor="@color/white"
+        android:textColor="@color/WhiteSmoke"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@id/illyButton"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"

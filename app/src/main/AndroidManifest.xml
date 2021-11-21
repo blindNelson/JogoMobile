@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JogoMobille">
         <activity
+            android:name=".TelaDeVitoriaActivity"
+            android:exported="true" />
+        <activity
             android:name=".LevelDifficultyActivity"
             android:exported="true" />
         <activity

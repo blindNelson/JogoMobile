@@ -12,9 +12,12 @@ import android.widget.Toast;
 import com.example.jogomobille.game.Game;
 import com.example.jogomobille.utils.InterfaceAPI;
 import com.example.jogomobille.utils.LevelDifficulty;
+import com.example.jogomobille.utils.Ranking;
 import com.example.jogomobille.utils.RankingRequest;
 import com.example.jogomobille.utils.RetrofitClientInstance;
 import com.example.jogomobille.utils.Session;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,6 +86,12 @@ public class GameActivity extends AppCompatActivity {
         // super.onBackPressed();
     }
 
+    public void fugiu() {
+        Log.d("MAIANIANIAANNSAAAAAAAAAAAAAAAAAAAAAAAAA", "morreu: sim ele morreu");
+        finish();
+        startActivity( new Intent(GameActivity.this, TelaDeMorteActivity.class));
+    }
+
     public void morreu() {
         Log.d("MAIANIANIAANNSAAAAAAAAAAAAAAAAAAAAAAAAA", "morreu: sim ele morreu");
         finish();
@@ -109,14 +118,10 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Não Conseguiu conectar com a API", Toast.LENGTH_LONG).show();
             }
         });
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("value", game.getScore());
-        Intent intent = new Intent(GameActivity.this, TelaDeMorteActivity.class);
-        intent.putExtras(bundle);
+        Ranking score = new Ranking(game.getScore());
+        Intent intent = new Intent(GameActivity.this,TelaDeVitoriaActivity.class);
+        intent.putExtra("score",(Serializable) score);
+
         startActivity(intent);
-    }
-
-    public void fugiu() {
-
     }
 }

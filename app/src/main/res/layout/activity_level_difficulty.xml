@@ -4,37 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LevelDifficultyActivity">
-
-    <SeekBar
-        android:id="@+id/levelBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="20"
-        android:progress="3"
-        app:layout_constraintBottom_toTopOf="@+id/difficultyBar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <SeekBar
-        android:id="@+id/difficultyBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
-        android:max="10"
-        android:progress="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/startGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
+    tools:context=".LevelDifficultyActivity"
+    android:background="@drawable/background_main">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="597dp"
+        android:layout_height="201dp"
+        android:background="@drawable/shape2"
+        android:orientation="vertical"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/levelTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-10dp"
+            android:fontFamily="@font/yatra"
+            android:paddingTop="15dp"
+            android:text="LEVEL 0"
+            android:textAlignment="center"
+            android:textColor="@color/WhiteSmoke"
+            android:textSize="20sp" />
+        <SeekBar
+            android:id="@+id/levelBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="20"
+            android:progress="3"
+            android:progressTint="@color/WhiteSmoke"
+            android:progressBackgroundTint="@color/WhiteSmoke"
+            android:thumb="@drawable/seekbar_thumb"
+            android:layout_marginTop="10dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_margin="7dp"
+            android:background="@color/WhiteSmoke" />
+        <TextView
+            android:id="@+id/difficultyTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-10dp"
+            android:fontFamily="@font/yatra"
+            android:paddingTop="15dp"
+            android:text="DIFFICULTY EASY"
+            android:textAlignment="center"
+            android:textColor="@color/WhiteSmoke"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/difficultyBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="4"
+            android:progress="1"
+            android:progressTint="@color/WhiteSmoke"
+            android:progressBackgroundTint="@color/WhiteSmoke"
+            android:thumb="@drawable/seekbar_thumb"
+            android:layout_marginTop="10dp"
+            />
+
+        <Button
+            android:id="@+id/startGameButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/yatra"
+            android:text="Start"
+            android:layout_marginHorizontal="150dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/WhiteSmoke"
+            android:textSize="20sp"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/WhiteSmoke"
+            app:strokeWidth="2dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

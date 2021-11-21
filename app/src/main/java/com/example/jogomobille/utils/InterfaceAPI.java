@@ -31,6 +31,12 @@ public interface InterfaceAPI {
     @GET("usuariosByName/{nomeUsuario}")
     Call<Usuario> getUsuarioByName(@Path("nomeUsuario") String nomeUsuario);
 
+    @GET("orderRankingsByFase/{fase}")
+    Call<List<Ranking>> getRankingsByLevel(@Path("fase") int fase);
+
     @GET("orderRankingsByUser/{id}")
     Call<List<Ranking>> getRankingsByUser(@Path("id") int id);
+
+    @GET("orderRankingsByUserFase/{id}/{fase}")
+    Call<List<Ranking>> getRankingsByUserLevel(@Path("id") int id, @Path("fase") int fase);
 }

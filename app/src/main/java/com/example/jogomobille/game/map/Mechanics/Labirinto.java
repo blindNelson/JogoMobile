@@ -12,8 +12,9 @@ public class Labirinto {
     byte[][] labirinto;
 
     public Labirinto(int fase, int dificuldade, String tipo) throws Exception {
-        if(fase < 0)
-            fase *= -1;
+        if(fase < 0) fase *= -1;
+        if(fase < 3) fase = 3;
+        if(dificuldade < 3) dificuldade = 3;
 
         largura = fase * 2 + 1;
         altura  = fase * 2 + 1;
@@ -129,6 +130,14 @@ public class Labirinto {
 
     public byte[][] getLabirinto() {
         return labirinto;
+    }
+
+    public Coordenada getEntrada() {
+        return entrada;
+    }
+
+    public Coordenada getSaida() {
+        return saida;
     }
 
     @Override

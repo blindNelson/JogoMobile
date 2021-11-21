@@ -79,4 +79,5 @@ public class TileMap {
     public Colision getColision() {
         return colision;
     }
+    public MapLayout getMapLayout() {return  mapLayout;}
 }

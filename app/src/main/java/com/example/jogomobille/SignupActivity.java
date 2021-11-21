@@ -10,10 +10,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jogomobille.utils.Session;
+import com.example.jogomobille.utils.InterfaceAPI;
+import com.example.jogomobille.utils.LoginCadastroRequest;
+import com.example.jogomobille.utils.RetrofitClientInstance;
 
 import retrofit2.Call;
 import retrofit2.Callback;

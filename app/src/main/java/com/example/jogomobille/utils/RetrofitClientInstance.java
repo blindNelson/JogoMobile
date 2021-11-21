@@ -1,4 +1,4 @@
-package com.example.jogomobille;
+package com.example.jogomobille.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

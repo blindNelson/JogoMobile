@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jogomobille.utils.InterfaceAPI;
+import com.example.jogomobille.utils.LoginCadastroRequest;
+import com.example.jogomobille.utils.LoginResponse;
+import com.example.jogomobille.utils.RetrofitClientInstance;
 import com.example.jogomobille.utils.Session;
 
 import retrofit2.Call;
@@ -62,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             LoginResponse loginResponse = response.body();
                             Session session = new Session(LoginActivity.this);
                             assert loginResponse != null;
-                            session.setIdNome(loginResponse.idUsuario,loginResponse.nomeUsuario);
+                            session.setIdNome(loginResponse.getIdUsuario(),loginResponse.getNomeUsuario());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         }

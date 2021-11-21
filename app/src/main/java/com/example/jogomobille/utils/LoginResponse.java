@@ -1,4 +1,4 @@
-package com.example.jogomobille;
+package com.example.jogomobille.utils;
 
 public class LoginResponse {
     String message;

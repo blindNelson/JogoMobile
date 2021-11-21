@@ -19,9 +19,12 @@ import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.game.graphics.Animator;
 import com.example.jogomobille.game.graphics.EnemyAnimator;
 import com.example.jogomobille.game.graphics.SpriteSheet;
+import com.example.jogomobille.game.map.MapLayout;
 import com.example.jogomobille.game.map.TileMap;
+import com.example.jogomobille.utils.Coordenada;
 import com.example.jogomobille.utils.LevelDifficulty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,6 +45,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private List<Enemy> enemyList = new ArrayList<Enemy>();
     private final TileMap tilemap;
     private Canvas canvas;
+    private LevelDifficulty levelDifficulty;
 
     public void setActivity2(GameActivity activity2) {
         this.activity2 = activity2;
@@ -52,9 +56,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
     private GameDisplay gameDisplay;
-    public Game(Context context,LevelDifficulty levelDifficulty) {
+    public Game(Context context,LevelDifficulty _levelDifficulty) {
         super(context);
         this.context = context;
+        this.levelDifficulty = _levelDifficulty;
 
         // Get surface holder and add callback
         SurfaceHolder surfaceHolder = getHolder();
@@ -67,8 +72,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         joystick = new Joystick(300, 800, 70, 40);
         spriteSheet = new SpriteSheet(context);
         tilemap = new TileMap(spriteSheet, levelDifficulty);
+        Coordenada cordStart = MapLayout.lab.getEntrada();
         Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
-        player = new Player(context, joystick, 1184, 64, 32, tilemap.getColision(), animator);
+        player = new Player(context, joystick, cordStart.getX() * 128 + 32, 128 + 32, 32, tilemap.getColision(), animator);
         EnemyAnimator enemyAnimator = new EnemyAnimator(spriteSheet.getEnemySpriteArrayDown());
         enemy = new Enemy(context, player, 1200, 1000, 32, tilemap.getColision(), enemyAnimator);
         enemyList.add(enemy);
@@ -212,5 +218,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void fugiu() {
         gameLoop.stopLoop();
+    }
+
+    public int getScore() {
+        return (int) (levelDifficulty.getLevel() * levelDifficulty.getDifficulty() / 0.3); //0.3 deve ser substituido pelo tempo em horas;
     }
 }

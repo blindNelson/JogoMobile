@@ -12,12 +12,12 @@ public class MapLayout {
     public static int LEVEL = 10;
     public static int NUMBER_OF_ROW_TILES = 2 * LEVEL + 1;
     public static int NUMBER_OF_COLUMN_TILES = 2 * LEVEL + 1;
-
+    public static Labirinto lab;
     private static byte[][] layout;
 
     public MapLayout(LevelDifficulty levelDifficulty) {
-        LEVEL = levelDifficulty.getLevel() + 3;
-        DIFFICULT = levelDifficulty.getDifficulty() + 6;
+        LEVEL = 2*(levelDifficulty.getLevel()/2) + 3;
+        DIFFICULT = levelDifficulty.getDifficulty() + 3;
         NUMBER_OF_ROW_TILES = 2 * LEVEL + 1;
         NUMBER_OF_COLUMN_TILES = 2 * LEVEL + 1;
         initializeLayout();
@@ -33,7 +33,7 @@ public class MapLayout {
 
     private void initializeLayout() {
         try {
-            Labirinto lab = new Labirinto(LEVEL, DIFFICULT, "fixo");
+            lab = new Labirinto(LEVEL, DIFFICULT, "randomico");
             layout = lab.getLabirinto();
         } catch (Exception e) {
             e.printStackTrace();

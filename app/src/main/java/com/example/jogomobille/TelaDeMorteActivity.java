@@ -40,7 +40,7 @@ public class TelaDeMorteActivity extends AppCompatActivity {
         scoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TelaDeMorteActivity.this, MainActivity.class); //ScoreActivity
+                Intent intent = new Intent(TelaDeMorteActivity.this, ScoreboardActivity.class); //ScoreActivity
                 startActivity(intent);
             }
         });

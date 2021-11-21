@@ -1,28 +1,41 @@
 package com.example.jogomobille.utils;
 
+import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 public class Ranking implements Serializable {
+    @SerializedName("idUsuario")
+    private int idUsuario;
 
-    @SerializedName("score")
-    private int score;
+    @SerializedName("pontuacao")
+    private int pontuacao;
 
-    public Ranking(int score) {
-        this.score = score;
+    @SerializedName("fase")
+    private int fase;
+
+    @SerializedName("usuario")
+    private Usuario usuario;
+
+    public Ranking(int idUsuario, int pontuacao, int fase, Usuario usuario) {
+        this.idUsuario = idUsuario;
+        this.pontuacao = pontuacao;
+        this.fase = fase;
+        this.usuario = usuario;
     }
 
-    public int getScore() {
-        return score;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public int getPontuacao() {
+        return pontuacao;
     }
 
-    @Override
-    public String toString() {
-        return "score= " + score;
+    public int getFase() {
+        return fase;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }

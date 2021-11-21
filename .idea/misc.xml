@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidSDK/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.2" />
         <entry key="..\:/Coisas/Projetos/Praticas/JogoMobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Coisas/Projetos/Praticas/JogoMobile/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/Rafa/nelsinho/COTUCA/PD20/4 semestre/praticas/JogoMobile/app/src/main/res/layout/activity_main.xml" value="0.209375" />
@@ -21,9 +22,11 @@
         <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_level_dificult.xml" value="0.25" />
         <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_scoreboard.xml" value="0.18" />
         <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_signup.xml" value="0.22" />
         <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_tela_de_morte.xml" value="0.25" />
         <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/activity_tela_de_vitoria.xml" value="0.1859375" />
+        <entry key="..\:/Users/terad/OneDrive/Documentos/GitHub/JogoMobile/app/src/main/res/layout/score_list_design.xml" value="0.121875" />
       </map>
     </option>
   </component>

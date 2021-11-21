@@ -9,10 +9,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.jogomobille.utils.Ranking;
+import com.example.jogomobille.utils.RankingSerializable;
 
 public class TelaDeVitoriaActivity extends AppCompatActivity {
     Button restartButton, scoreButton, backButton;
@@ -32,7 +31,7 @@ public class TelaDeVitoriaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tela_de_vitoria);
 
         Intent intent = getIntent();
-        Ranking score = (Ranking)intent.getSerializableExtra("score");
+        RankingSerializable score = (RankingSerializable)intent.getSerializableExtra("score");
 
         restartButton = findViewById(R.id.restartButton);
         scoreButton = findViewById(R.id.scoreButton);
@@ -50,7 +49,7 @@ public class TelaDeVitoriaActivity extends AppCompatActivity {
         scoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TelaDeVitoriaActivity.this, MainActivity.class); //ScoreActivity
+                Intent intent = new Intent(TelaDeVitoriaActivity.this, ScoreboardActivity.class); //ScoreActivity
                 startActivity(intent);
             }
         });

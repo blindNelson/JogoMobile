@@ -4,9 +4,15 @@ import com.example.jogomobille.utils.LoginCadastroRequest;
 import com.example.jogomobille.utils.LoginResponse;
 import com.example.jogomobille.utils.RankingRequest;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface InterfaceAPI {
 
@@ -18,4 +24,13 @@ public interface InterfaceAPI {
 
     @POST("rankings")
     Call<String> pontuar(@Body RankingRequest loginCadastroRequest);
+
+    @GET("orderRankings")
+    Call<List<Ranking>> getRankings();
+
+    @GET("usuariosByName/{nomeUsuario}")
+    Call<Usuario> getUsuarioByName(@Path("nomeUsuario") String nomeUsuario);
+
+    @GET("orderRankingsByUser/{id}")
+    Call<List<Ranking>> getRankingsByUser(@Path("id") int id);
 }

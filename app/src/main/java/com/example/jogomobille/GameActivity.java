@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.jogomobille.game.Game;
 import com.example.jogomobille.utils.InterfaceAPI;
 import com.example.jogomobille.utils.LevelDifficulty;
-import com.example.jogomobille.utils.Ranking;
+import com.example.jogomobille.utils.RankingSerializable;
 import com.example.jogomobille.utils.RankingRequest;
 import com.example.jogomobille.utils.RetrofitClientInstance;
 import com.example.jogomobille.utils.Session;
@@ -118,7 +118,7 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Não Conseguiu conectar com a API", Toast.LENGTH_LONG).show();
             }
         });
-        Ranking score = new Ranking(game.getScore());
+        RankingSerializable score = new RankingSerializable(game.getScore());
         Intent intent = new Intent(GameActivity.this,TelaDeVitoriaActivity.class);
         intent.putExtra("score",(Serializable) score);
 

@@ -31,20 +31,21 @@ public class Player extends Circle {
     private final Joystick joystick;
     private final PlayerState playerState;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, Colision tilemap) {
-        super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tilemap);
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tileMap) {
+        super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tileMap);
         this.joystick = joystick;
 
         playerState = new PlayerState(this);
     }
 
     public void update() {
+
         // Update velocity based on actuator of joystick
+        velocityX = joystick.getActuatorX() * MAX_SPEED;
+        velocityY = joystick.getActuatorY() * MAX_SPEED;
 
-        updateVelocity((int)(joystick.getActuatorX() * MAX_SPEED), (int)(joystick.getActuatorY() * MAX_SPEED));
-//        updateVelocity(-5, 0);
+        super.update();
 
-        // Update direction
         if (velocityX != 0 || velocityY != 0) {
             // Normalize velocity to get direction (unit vector of velocity)
             double distance = Utils.getDistanceBetweenPoints(0, 0, velocityX, velocityY);

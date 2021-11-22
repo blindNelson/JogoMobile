@@ -11,8 +11,6 @@ import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
 import com.example.jogomobille.game.gameobject.player.Player;
-import com.example.jogomobille.game.map.Mechanics.Colision;
-import com.example.jogomobille.game.map.Mechanics.MapConfig;
 import com.example.jogomobille.game.map.TileMap;
 import com.example.jogomobille.utils.Coordenada;
 import com.example.jogomobille.utils.Direction;
@@ -31,8 +29,8 @@ public class Dummy extends Circle {
     private Node primeiro;
     private Direcao direcao;
 
-    public Dummy(Context context, double positionX, double positionY, Colision colision, TileMap tileMap, Player player) {
-        super(context, ContextCompat.getColor(context, R.color.Aquamarine), positionX, positionY, 32, colision);
+    public Dummy(Context context, double positionX, double positionY, TileMap tileMap, Player player) {
+        super(context, ContextCompat.getColor(context, R.color.Aquamarine), positionX, positionY, 32, tileMap);
 
         this.tileMap = tileMap;
         this.player = player;
@@ -47,6 +45,7 @@ public class Dummy extends Circle {
     @Override
     public void update() {
 
+        //joga o tarjeto no metodo e devolve a direção que o bot deve ir.
         Coordenada target = getCoordinates(new Coordenada((int)player.getPositionX(), (int)player.getPositionY()));
 
         //calcular o vetor do inimigo para o player(em x e y)
@@ -77,7 +76,11 @@ public class Dummy extends Circle {
                 direcao = Direcao.DOWN;
         }
 
-        updateVelocity( (int)(Direction.getVelocityVectorByDirection(direcao).getX()*MAX_SPEED), (int)(Direction.getVelocityVectorByDirection(direcao).getY() * MAX_SPEED));
+        velocityX = (int)(Direction.getVelocityVectorByDirection(direcao).getX()*MAX_SPEED);
+        velocityY = (int)(Direction.getVelocityVectorByDirection(direcao).getY() * MAX_SPEED);
+
+        super.update();
+
         Log.d("Dummy.java", "update():\n" +
                 "vx:   " + velocityX + ";\n" +
                 "vy:   " + velocityY + ";\n");
@@ -169,7 +172,7 @@ public class Dummy extends Circle {
         }
 
         try{
-            while (tileMap.isColiding(primeiro.getInfo().getX(), primeiro.getInfo().getY())){// && tileMap.isColiding(primeiro.getInfo().getX() + (int) width, primeiro.getInfo().getY() + (int) height)) {
+            while (tileMap.isPixelColiding(primeiro.getInfo().getX(), primeiro.getInfo().getY())){// && tileMap.isColiding(primeiro.getInfo().getX() + (int) width, primeiro.getInfo().getY() + (int) height)) {
                 if (primeiro.getProximo() == null) {
                     Log.wtf("Dummy.java","wtf: primeiro.proximo = null \nprimeiro: "+primeiro.getInfo());
                     return target;

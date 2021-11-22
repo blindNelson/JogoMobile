@@ -31,7 +31,7 @@ public abstract class Bot extends Circle
 
     public void update(Coordenada target){
 
-        target = pathToTarget(target);
+        //target = pathToTarget(target);
 
         Log.d("Bot.java", "update(): Tx="+target.getX()+", Ty="+target.getY()+";");
 
@@ -40,7 +40,10 @@ public abstract class Bot extends Circle
         velocityX = ((target.getX()-positionX)/distance)*MAX_SPEED;
         velocityY = ((target.getY()-positionY)/distance)*MAX_SPEED;
 
-        super.update();
+        positionX+=velocityX;
+        positionY+=velocityY;
+
+        // ;./m//super.update();
     }
 
 

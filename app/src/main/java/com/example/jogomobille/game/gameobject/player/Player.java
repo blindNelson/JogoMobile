@@ -63,6 +63,10 @@ public class Player extends Circle {
         }
 
         playerState.update();
+
+        if(tileMap.isExit((int)positionX, (int)positionY)){
+
+        }
     }
 
     public enum Direction {

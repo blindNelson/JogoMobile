@@ -74,4 +74,8 @@ public class TileMap {
         return tilemap[y][x].colide;
     }
     public MapLayout getMapLayout() {return  mapLayout;}
+
+    public boolean isExit(int x, int y){
+        return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS] instanceof ExitTile;
+    }
 }

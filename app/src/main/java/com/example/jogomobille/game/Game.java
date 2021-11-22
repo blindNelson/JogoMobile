@@ -222,6 +222,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void morreu() {
         //pause();
+        activity2.fugiu();
+    }
+
+    public void ganhou(){
         activity2.morreu();
     }
 

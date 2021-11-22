@@ -11,12 +11,13 @@ public class Labirinto {
     Coordenada entrada, saida;
     byte[][] labirinto;
 
-    public Labirinto(int dificuldade, String tipo) throws Exception {
-        if(dificuldade < 1)
-            dificuldade = 1;
+    public Labirinto(int fase, int dificuldade, String tipo) throws Exception {
+        if(fase < 0) fase *= -1;
+        if(fase < 3) fase = 3;
+        if(dificuldade < 3) dificuldade = 3;
 
-        largura = dificuldade * 2 + 1;
-        altura  = dificuldade * 2 + 1;
+        largura = fase * 2 + 1;
+        altura  = fase * 2 + 1;
 
         labirinto = new byte[altura][largura];
 
@@ -24,32 +25,27 @@ public class Labirinto {
             for(int j=0; j < largura; j++)
                 labirinto[i][j] = 1;
 
-        switch (tipo) {
+        switch (tipo)
+        {
             case "fixo" :
-            {
-                entrada = new Coordenada(largura / 2 - 1, 0);
-                saida = new Coordenada(largura / 2 - 1, altura - 1);
+                entrada = new Coordenada(largura / 2, 0);
+                saida = new Coordenada(largura / 2, altura - 1);
                 break;
-            }
             case "randomico":
-            {
                 entrada = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, 0);
                 saida = new Coordenada((int) (Math.random() * (largura / 2)) * 2 + 1, altura - 1);
                 break;
-            }
-            default :
-            {
+            default:
                 entrada = new Coordenada(1, 0);
                 saida = new Coordenada(largura - 2, altura - 1);
                 break;
-            }
         }
 
         Pilha<Coordenada> caminho = new Pilha<>(largura * altura);
         Coordenada atual = new Coordenada(entrada);
 
         caminho.guardeUmItem(atual);
-        labirinto[entrada.getY()][entrada.getX()] = 1; //Abrir a entrada
+        labirinto[entrada.getY()][entrada.getX()] = 3; //Abrir a entrada
         atual = new Coordenada(entrada.getX(),entrada.getY()+1);
         caminho.guardeUmItem(atual);
         labirinto[atual.getY()][atual.getX()] = 0;
@@ -76,20 +72,21 @@ public class Labirinto {
             else
                 nUnico++;
 
-            if(nUnico > 6)
+            if(nUnico > dificuldade)
             {
                 byte rand = (byte)(4 * Math.random());
                 switch (rand)
                 {
                     case 0: if(cavavel(atual.getX()+1,atual.getY()))
-                        cavar(new Coordenada(atual.getX()+1,atual.getY())); break;
+                    { cavar(new Coordenada(atual.getX()+1,atual.getY())); break;}
                     case 1: if(cavavel(atual.getX()-1,atual.getY()))
-                        cavar(new Coordenada(atual.getX()-1,atual.getY())); break;
+                    { cavar(new Coordenada(atual.getX()-1,atual.getY())); break;}
                     case 2: if(cavavel(atual.getX(),atual.getY()+1))
-                        cavar(new Coordenada(atual.getX(),atual.getY()+1)); break;
+                    { cavar(new Coordenada(atual.getX(),atual.getY()+1)); break;}
                     case 3: if(cavavel(atual.getX(),atual.getY()-1))
-                        cavar(new Coordenada(atual.getX(),atual.getY()-1)); break;
+                    { cavar(new Coordenada(atual.getX(),atual.getY()-1)); break;}
                 }
+                nUnico = 0;
             }
 
             if (fila.isEmpty())//Regressao
@@ -115,7 +112,7 @@ public class Labirinto {
             atual = fila.get(escolha);
 
         }while (true);
-        labirinto[saida.getY()][saida.getX()] = 1;
+        labirinto[saida.getY()][saida.getX()] = 4;
     }
 
     public boolean cavavel(int x, int y) {
@@ -135,6 +132,14 @@ public class Labirinto {
         return labirinto;
     }
 
+    public Coordenada getEntrada() {
+        return entrada;
+    }
+
+    public Coordenada getSaida() {
+        return saida;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
@@ -147,8 +152,8 @@ public class Labirinto {
                 {
                     case 0: res.append(' '); break;
                     case 1: res.append('#'); break;
-                    case 8: res.append('E'); break;
-                    case 9: res.append('S'); break;
+                    case 3: res.append('E'); break;
+                    case 4: res.append('S'); break;
                 }
             }
             res.append("\n");

@@ -11,6 +11,7 @@ import android.graphics.Rect;
 
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.graphics.SpriteSheet;
+import com.example.jogomobille.utils.LevelDifficulty;
 
 public class TileMap {
     private final MapLayout mapLayout;
@@ -18,8 +19,8 @@ public class TileMap {
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
 
-    public TileMap(SpriteSheet spriteSheet) {
-        mapLayout = new MapLayout();
+    public TileMap(SpriteSheet spriteSheet, LevelDifficulty levelDifficulty) {
+        mapLayout = new MapLayout(levelDifficulty);
         this.spriteSheet = spriteSheet;
         initializeTileMap();
     }
@@ -60,7 +61,8 @@ public class TileMap {
         );
     }
 
-    public void draw(Canvas canvas, GameDisplay gameDisplay) throws ArrayIndexOutOfBoundsException {
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        canvas.scale((float)2, (float)2);
         canvas.drawBitmap(mapBitmap, gameDisplay.getGameRect(), gameDisplay.DISPLAY_RECT, null);
     }
 
@@ -71,4 +73,5 @@ public class TileMap {
     public boolean isColiding(int x, int y){
         return tilemap[y][x].colide;
     }
+    public MapLayout getMapLayout() {return  mapLayout;}
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.jogomobille">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,10 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JogoMobille">
-
+        <activity
+            android:name=".ScoreboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TelaDeVitoriaActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LevelDifficultyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TelaDeMorteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="ExtraText">
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,14 +41,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".MainActivity2"
+            android:name=".GameActivity"
             android:exported="true"
-            android:screenOrientation="landscape">
-        </activity>
-
-
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

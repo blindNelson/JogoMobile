@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/background_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@drawable/illy"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape2"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+                android:fontFamily="@font/yatra"
+                android:paddingTop="15dp"
+                android:text="ABYSS PIRAMID"
+                android:textAlignment="center"
+                android:textColor="@color/WhiteSmoke"
+                android:textSize="40sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_margin="7dp"
+                android:background="@color/WhiteSmoke" />
+
+            <EditText
+                android:id="@+id/usernameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:fontFamily="@font/yatra"
+                android:hint="Username"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/WhiteSmoke"
+                android:textColorHint="@color/Gray"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/passwordTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:fontFamily="@font/yatra"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/WhiteSmoke"
+                android:textColorHint="@color/Gray"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/confirmPasswordTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:fontFamily="@font/yatra"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/WhiteSmoke"
+                android:textColorHint="@color/Gray"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/cadastroButton"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/yatra"
+                android:text="Signup"
+                android:textColor="@color/WhiteSmoke"
+                android:textSize="20sp"
+                app:cornerRadius="20dp"
+                app:strokeColor="@color/WhiteSmoke"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat;
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
+import com.example.jogomobille.game.graphics.Animator;
+import com.example.jogomobille.game.graphics.SpriteSheet;
 import com.example.jogomobille.game.map.Mechanics.Colision;
 import com.example.jogomobille.game.map.TileMap;
 import com.example.jogomobille.utils.Utils;
@@ -29,13 +31,19 @@ public class Player extends Circle {
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / Gameloop.MAX_UPS;
 
     private final Joystick joystick;
-    private final PlayerState playerState;
+    private final PlayerState playerState ;
+    private Animator animator;
+    private SpriteSheet spriteSheet;
+    private Direction direction = Direction.DOWN;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tileMap) {
+
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tileMap, Animator animator) {
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tileMap);
-        this.joystick = joystick;
 
+        this.joystick = joystick;
+        this.animator = animator;
         playerState = new PlayerState(this);
+        this.spriteSheet = new SpriteSheet(context);
     }
 
     public void update() {
@@ -43,6 +51,7 @@ public class Player extends Circle {
         // Update velocity based on actuator of joystick
         velocityX = joystick.getActuatorX() * MAX_SPEED;
         velocityY = joystick.getActuatorY() * MAX_SPEED;
+
 
         super.update();
 
@@ -53,10 +62,57 @@ public class Player extends Circle {
             directionY = velocityY / distance;
         }
 
+        playerState.update();
+    }
+
+    public enum Direction {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
-        super.draw(canvas, gameDisplay);
+        //super.draw(canvas, gameDisplay);
+
+        double directionX = joystick.getActuatorX();
+        double directionY = joystick.getActuatorY();
+
+        boolean differenceY = Math.abs(directionY) > Math.abs(directionX);
+        boolean differenceX = Math.abs(directionX) > Math.abs(directionY);
+
+        if (directionY < 0 && differenceY) direction = Direction.UP;
+        if (directionY > 0 && differenceY) direction = Direction.DOWN;
+        if (directionX < 0 && differenceX) direction = Direction.LEFT;
+        if (directionX > 0 && differenceX) direction = Direction.RIGHT;
+
+        switch (direction) {
+            case UP: animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayUp());              break;
+            default: case DOWN: animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayDown()); break;
+            case LEFT: animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayLeft());          break;
+            case RIGHT: animator.setPlayerSpriteArray(spriteSheet.getPlayerSpriteArrayRight());        break;
+        }
+
+        if (directionX == 0 && directionY == 0) {
+            switch (direction) {
+                case UP:
+                    animator.setPlayerSpriteArray(spriteSheet.getStaticPlayerSpriteArrayUp());
+                    break;
+                default:
+                    case DOWN:
+                        animator.setPlayerSpriteArray(spriteSheet.getStaticPlayerSpriteArrayDown());
+                        break;
+                case LEFT:
+                    animator.setPlayerSpriteArray(spriteSheet.getStaticPlayerSpriteArrayLeft());
+                    break;
+                case RIGHT:
+                    animator.setPlayerSpriteArray(spriteSheet.getStaticPlayerSpriteArrayRight());
+                    break;
+            }
+        }
+
+        animator.draw(canvas, gameDisplay, this);
+
     }
 
     public PlayerState getPlayerState() {

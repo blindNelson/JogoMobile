@@ -18,7 +18,9 @@ abstract class Tile {
     public enum TileType {
         GROUND_TILE,
         WALL_TILE,
-        WALL_2_TILE
+        WALL_2_TILE,
+        ENTRANCE_TILE,
+        EXIT_TILE
     }
 
     public static Tile getTile(int idxTileType, SpriteSheet spriteSheet, Rect mapLocationRect) {
@@ -29,6 +31,10 @@ abstract class Tile {
                 return new WallTile(spriteSheet, mapLocationRect);
             case WALL_2_TILE:
                 return new Wall2Tile(spriteSheet, mapLocationRect);
+            case ENTRANCE_TILE:
+                return new EntranceTile(spriteSheet, mapLocationRect);
+            case EXIT_TILE:
+                return new ExitTile(spriteSheet, mapLocationRect);
             default:
                 return null;
         }

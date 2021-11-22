@@ -124,23 +124,15 @@ public class ScoreboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Ranking>> call, Response<List<Ranking>> response) {
                 List<Ranking> rankingArray = response.body();
-                if(rankingArray.size() != 0)
-                {
-                    String[] rankingStrings = new String[rankingArray.size()];
-                    rankingStrings[0] = "N°      Pontuação      Fase      Nome";
-                    for (int i = 1; i < rankingArray.size(); i++) {
-                        rankingStrings[i] = padRight(i+"", 5) + "    " + padRight((rankingArray.get(i).getPontuacao() + ""), 10)
-                                + "            " + padRight((rankingArray.get(i).getFase()+""), 3)
-                                + "          " + padRight((rankingArray.get(i).getUsuario().getNomeUsuario()+""), 50);
-                    }
-                    scoreView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.score_list_design, rankingStrings));
+                String[] rankingStrings = new String[(rankingArray.size()+1)];
+                rankingStrings[0] = "N°      Pontuação      Fase      Nome";
+                for (int i = 0; i < rankingArray.size(); i++) {
+                    rankingStrings[i+1] = padRight(i+1+"", 5)
+                                                    + "    " + padRight((rankingArray.get(i).getPontuacao() + ""), 10)
+                                                    + "            " + padRight((rankingArray.get(i).getFase()+""), 3)
+                                                    + "          " + padRight((rankingArray.get(i).getUsuario().getNomeUsuario()+""), 50);
                 }
-                else
-                {
-                    String[] rankingStrings = new String[1];
-                    rankingStrings[0] = "N°      Pontuação      Fase      Nome";
-                    scoreView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.score_list_design, rankingStrings));
-                }
+                scoreView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.score_list_design, rankingStrings));
             }
 
             @Override

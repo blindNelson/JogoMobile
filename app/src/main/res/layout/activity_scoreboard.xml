@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/yatra"
-            android:text="SCOREBORD"
+            android:text="SCOREBOARD"
             android:layout_marginBottom="-10dp"
             android:layout_marginHorizontal="7dp"
             android:textAlignment="center"

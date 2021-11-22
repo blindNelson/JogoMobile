@@ -76,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(getApplicationContext(), "Nome de usuario já ultilizado!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Nome de usuario já utilizado!", Toast.LENGTH_LONG).show();
                             }
                         }
 

@@ -38,7 +38,11 @@ public abstract class GameObject {
     }
 
     public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
-    public abstract void update();
+
+    public void update(){
+        positionX+=tilemap.colisionX(this, (int)velocityX);
+        positionY+=tilemap.colisionY(this, (int)velocityY);
+    }
 
     protected void updateVelocity(int vX, int vY){
         velocityX = tilemap.colisionX(this, vX);

@@ -39,12 +39,13 @@ public class Player extends Circle {
     }
 
     public void update() {
+
         // Update velocity based on actuator of joystick
+        velocityX = joystick.getActuatorX() * MAX_SPEED;
+        velocityY = joystick.getActuatorY() * MAX_SPEED;
 
-        updateVelocity((int)(joystick.getActuatorX() * MAX_SPEED), (int)(joystick.getActuatorY() * MAX_SPEED));
-//        updateVelocity(-5, 0);
+        super.update();
 
-        // Update direction
         if (velocityX != 0 || velocityY != 0) {
             // Normalize velocity to get direction (unit vector of velocity)
             double distance = Utils.getDistanceBetweenPoints(0, 0, velocityX, velocityY);

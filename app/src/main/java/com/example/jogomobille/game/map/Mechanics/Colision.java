@@ -29,20 +29,6 @@ public class Colision {
         //colisão com paredes
         try {
 
-//            String message = "x = " + x + ";" +
-//                    "y = " + y + ";\n" +
-//                    "xw = " + (x+w) + ";" +
-//                    "yh = " + (y+h) + ";\n" +
-//                    "w = " + w + ";" +
-//                    "v = " + v + ";\n" +
-//                    "x+v = " + (x+v) + "; " +
-//                    "x+w+v = " + (x+w+v) + "; " +"x+tpw+v = " + (x+TwPw+v) + "; " +
-//                    "x+w+v+tpw = " + (x+w+v+TwPw) + ";\n" +
-//                    "wT = " + TILE_HEIGHT_PIXELS + ";\n" +
-//                    "Tw/Pw = " + TwPw + ";" +
-//                    "(x/Tw)*Tw = " + XtoTWP + ";\n";
-
-
             if(tileMap.isColiding(x+v, y)||tileMap.isColiding(x+v, y+h)) {
                 int positionF = XtoTWP+TwPw;
                 velocityX = -(x%TILE_WIDTH_PIXELS);
@@ -87,21 +73,6 @@ public class Colision {
         int v = velocityY;
         int ThPh = (TILE_HEIGHT_PIXELS-w);
         int YtoTHP = ((y / TILE_HEIGHT_PIXELS) * TILE_HEIGHT_PIXELS);
-
-
-
-//            String message = "x = " + x + ";" +
-//                    "y = " + y + ";\n" +
-//                    "yw = " + (x+w) + ";" +
-//                    "yh = " + (y+h) + ";\n" +
-//                    "h = " + h + ";" +
-//                    "v = " + v + ";\n" +
-//                    "x+v = " + (y+v) + "; " +
-//                    "y+h+v = " + (y+h+v) + "; " +"x+tpw+v = " + (y+ThPh+v) + "; " +
-//                    "y+h+v+tpw = " + (y+h+v+ThPh) + ";\n" +
-//                    "wT = " + TILE_HEIGHT_PIXELS + ";\n" +
-//                    "Th/Ph = " + ThPh + ";" +
-//                    "(Y/Th)*Tw = " + YtoTHP + ";\n";
 
         try {
 

@@ -19,7 +19,6 @@ import com.example.jogomobille.game.map.Mechanics.MapConfig;
 public class TileMap {
     private final MapLayout mapLayout;
     private final Colision colision;
-    private final MapConfig mapConfig;
     private Tile[][] tilemap;
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
@@ -29,7 +28,6 @@ public class TileMap {
         this.spriteSheet = spriteSheet;
         initializeTileMap();
         colision = new Colision(this);
-        mapConfig = new MapConfig(this);
     }
 
     private void initializeTileMap() {
@@ -78,8 +76,5 @@ public class TileMap {
 
     public Colision getColision() {
         return colision;
-    }
-    public MapConfig getMapConfig() {
-        return mapConfig;
     }
 }

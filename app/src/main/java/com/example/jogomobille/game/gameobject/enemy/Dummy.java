@@ -47,6 +47,7 @@ public class Dummy extends Circle {
     @Override
     public void update() {
 
+        //joga o tarjeto no metodo e devolve a direção que o bot deve ir.
         Coordenada target = getCoordinates(new Coordenada((int)player.getPositionX(), (int)player.getPositionY()));
 
         //calcular o vetor do inimigo para o player(em x e y)

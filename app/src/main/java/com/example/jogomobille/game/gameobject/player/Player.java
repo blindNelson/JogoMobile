@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.jogomobille.game.Game;
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.Gameloop;
 import com.example.jogomobille.game.gameobject.Circle;
@@ -64,9 +65,9 @@ public class Player extends Circle {
 
         playerState.update();
 
-        if(tileMap.isExit((int)positionX, (int)positionY)){
-
-        }
+//        if(tileMap.isExit((int)positionX, (int)positionY)){
+//
+//        }
     }
 
     public enum Direction {

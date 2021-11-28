@@ -81,7 +81,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         tilemap = new TileMap(spriteSheet, levelDifficulty);
         Coordenada cordStart = MapLayout.lab.getEntrada();
         Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
-        player = new Player(context, joystick, cordStart.getX() * 128 + 32, 128 + 32, 32, tilemap, animator);
+        player = new Player(context, joystick, cordStart.getX() * 128 + 32, 128 + 32, 32, tilemap, animator, this);
         EnemyAnimator enemyAnimator = new EnemyAnimator(spriteSheet.getEnemySpriteArrayDown());
         enemy = new Teraculos(context, ContextCompat.getColor(context, R.color.enemy), 1200, 1000, 32, tilemap, player, enemyAnimator);
         enemyList.add(enemy);
@@ -180,6 +180,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player.update();
 
+        if(tileMap.isExit((int) player.getPositionX(), (int)player.getPositionY())){
+            ganhou();
+        }
+
         //gameScene.update();
 
         /*if (Enemy.readyToSpawn()) {
@@ -221,7 +225,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void morreu() {
-        //pause();
         activity2.fugiu();
     }
 

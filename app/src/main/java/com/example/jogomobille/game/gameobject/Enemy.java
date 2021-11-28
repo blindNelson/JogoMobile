@@ -13,6 +13,7 @@ import com.example.jogomobille.game.graphics.Animator;
 import com.example.jogomobille.game.graphics.EnemyAnimator;
 import com.example.jogomobille.game.graphics.SpriteSheet;
 import com.example.jogomobille.game.map.Mechanics.Colision;
+import com.example.jogomobille.game.map.TileMap;
 
 public class Enemy extends Circle {
     private static final double SPEED_PIXELS_PER_SECOND = Player.SPEED_PIXELS_PER_SECOND * 0.6;
@@ -26,9 +27,9 @@ public class Enemy extends Circle {
     private double directionX, directionY;
     private Player.Direction direction = Player.Direction.DOWN;
     private SpriteSheet spriteSheet;
-    private Colision tilemap;
+    private TileMap tilemap;
 
-    public Enemy(Context context, Player player, double positionX, double positionY, double radius, Colision tilemap, EnemyAnimator animator) {
+    public Enemy(Context context, Player player, double positionX, double positionY, double radius, TileMap tilemap, EnemyAnimator animator) {
         super(context, ContextCompat.getColor(context, R.color.enemy), positionX, positionY, radius, tilemap);
         this.player = player;
         this.animator = animator;
@@ -36,7 +37,7 @@ public class Enemy extends Circle {
         this.tilemap = tilemap;
     }
 
-    public Enemy(Context context, Player player, Colision tilemap, EnemyAnimator animator) {
+    public Enemy(Context context, Player player, TileMap tilemap, EnemyAnimator animator) {
         super(
                 context,
                 ContextCompat.getColor(context, R.color.enemy),
@@ -126,7 +127,6 @@ public class Enemy extends Circle {
             }
         }
 
-        animator.draw(canvas, gameDisplay, this);
 
     }
 }

@@ -47,11 +47,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Canvas canvas;
     private LevelDifficulty levelDifficulty;
 
-    public void setActivity2(GameActivity activity2) {
-        this.activity2 = activity2;
+    public void setActivity2(GameActivity gameActivity) {
+        this.gameActivity = gameActivity;
     }
 
-    private GameActivity activity2;
+    private GameActivity gameActivity;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
@@ -213,7 +213,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void morreu() {
         //pause();
-        activity2.morreu();
+        gameActivity.morreu();
     }
 
     public void fugiu() {

@@ -87,13 +87,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void fugiu() {
-        Log.d("MAIANIANIAANNSAAAAAAAAAAAAAAAAAAAAAAAAA", "morreu: sim ele morreu");
-        finish();
-        startActivity( new Intent(GameActivity.this, TelaDeMorteActivity.class));
-    }
-
-    public void morreu() {
-        Log.d("MAIANIANIAANNSAAAAAAAAAAAAAAAAAAAAAAAAA", "morreu: sim ele morreu");
         finish();
         Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
         final InterfaceAPI api = retrofit.create(InterfaceAPI.class);
@@ -121,7 +114,11 @@ public class GameActivity extends AppCompatActivity {
         RankingSerializable score = new RankingSerializable(game.getScore());
         Intent intent = new Intent(GameActivity.this,TelaDeVitoriaActivity.class);
         intent.putExtra("score",(Serializable) score);
-
         startActivity(intent);
+    }
+
+    public void morreu() {
+        finish();
+        startActivity( new Intent(GameActivity.this, TelaDeMorteActivity.class));
     }
 }

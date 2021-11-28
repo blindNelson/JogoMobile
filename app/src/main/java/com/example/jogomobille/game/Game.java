@@ -49,11 +49,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Canvas canvas;
     private LevelDifficulty levelDifficulty;
 
-    public void setActivity2(GameActivity activity2) {
-        this.activity2 = activity2;
+    public void setActivity2(GameActivity gameActivity) {
+        this.gameActivity = gameActivity;
     }
 
-    private GameActivity activity2;
+    private GameActivity gameActivity;
 
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
@@ -179,14 +179,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         player.update();
-        try {
-            if(tileMap.isExit((int) player.getPositionX(), (int)player.getPositionY())){
-                ganhou();
-            }
-        }
-        catch (IndexOutOfBoundsException indexOutOfBoundsException)
-        {
-            Log.wtf("Game.java","update() IndexOutOfBoundsException");
+        if(tileMap.isExit((int) player.getPositionX(), (int)player.getPositionY())){
+            fugiu();
         }
 
 
@@ -231,18 +225,19 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void morreu() {
-        activity2.fugiu();
+        gameActivity.morreu();
+        synchronized (gameActivity)
+        { gameLoop.stopLoop(); }
     }
 
-    public void ganhou(){
-        activity2.morreu();
-    }
+    public void fugiu(){
 
-    public void fugiu() {
-        gameLoop.stopLoop();
+        gameActivity.fugiu();
+        synchronized (gameActivity)
+        { gameLoop.stopLoop(); }
     }
 
     public int getScore() {
-        return (int) (levelDifficulty.getLevel() * levelDifficulty.getDifficulty() / 0.3); //0.3 deve ser substituido pelo tempo em horas;
+        return (int) ((levelDifficulty.getLevel()+1) * (levelDifficulty.getDifficulty()+1) / 0.003); //0.003 deve ser substituido pelo tempo em horas;
     }
 }

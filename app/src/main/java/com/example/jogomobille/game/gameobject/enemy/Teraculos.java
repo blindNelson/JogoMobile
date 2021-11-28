@@ -28,7 +28,7 @@ public class Teraculos extends Bot {
     private Player.Direction direction;
 
     public Teraculos(Context context, int color, double positionX, double positionY, double radius, TileMap tileMap, Player player, EnemyAnimator animator) {
-        super(context, color, positionX, positionY, radius, tileMap, 200);
+        super(context, color, positionX, positionY, radius, tileMap, 0);//speed = 200
 
         this.player = player;
         this.animator = animator;

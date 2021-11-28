@@ -7,7 +7,7 @@ public class Gameloop extends Thread {
     public static final double MAX_UPS = 30.0;
     private static final double UPS_PERIOD = 1E+3/MAX_UPS;
     private boolean isRunning = false;
-    private SurfaceHolder surfaceHolder;
+    private final SurfaceHolder surfaceHolder;
     private Game game;
     private double averageUPS;
     private double averageFPS;
@@ -105,12 +105,14 @@ public class Gameloop extends Thread {
     }
 
     public void stopLoop() {
-        isRunning = false;
-        // Wait for thread to join
-        try {
-            join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (surfaceHolder) {
+            isRunning = false;
+            // Wait for thread to join
+            try {
+                join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

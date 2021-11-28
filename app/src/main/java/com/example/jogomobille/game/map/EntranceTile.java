@@ -10,7 +10,7 @@ public class EntranceTile extends Tile {
     private final Sprite sprite;
 
     public EntranceTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
-        super(mapLocationRect, false);
+        super(mapLocationRect, true);
         sprite = spriteSheet.getEntranceSprite();
     }
 

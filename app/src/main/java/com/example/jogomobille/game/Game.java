@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -45,7 +46,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Joystick joystick;
     private TileMap tileMap;
     private List<Teraculos> enemyList = new ArrayList<Teraculos>();
-    private final TileMap tilemap;
     private Canvas canvas;
     private LevelDifficulty levelDifficulty;
 
@@ -78,12 +78,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         joystick = new Joystick(300, 800, 70, 40);
         spriteSheet = new SpriteSheet(context);
-        tilemap = new TileMap(spriteSheet, levelDifficulty);
+        tileMap = new TileMap(spriteSheet, levelDifficulty);
         Coordenada cordStart = MapLayout.lab.getEntrada();
         Animator animator = new Animator(spriteSheet.getPlayerSpriteArrayDown());
-        player = new Player(context, joystick, cordStart.getX() * 128 + 32, 128 + 32, 32, tilemap, animator);
+        player = new Player(context, joystick, cordStart.getX() * 128 + 32, 128 + 32, 32, tileMap, animator);
         EnemyAnimator enemyAnimator = new EnemyAnimator(spriteSheet.getEnemySpriteArrayDown());
-        enemy = new Teraculos(context, ContextCompat.getColor(context, R.color.enemy), 1200, 1000, 32, tilemap, player, enemyAnimator);
+        enemy = new Teraculos(context, ContextCompat.getColor(context, R.color.enemy), 1200, 1000, 32, tileMap, player, enemyAnimator);
         enemyList.add(enemy);
 
         // Initialize game panels
@@ -179,10 +179,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         player.update();
-
-        if(tileMap.isExit((int) player.getPositionX(), (int)player.getPositionY())){
-            ganhou();
+        try {
+            if(tileMap.isExit((int) player.getPositionX(), (int)player.getPositionY())){
+                ganhou();
+            }
         }
+        catch (IndexOutOfBoundsException indexOutOfBoundsException)
+        {
+            Log.wtf("Game.java","update() IndexOutOfBoundsException");
+        }
+
 
         //gameScene.update();
 

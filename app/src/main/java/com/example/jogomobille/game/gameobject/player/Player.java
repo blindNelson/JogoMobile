@@ -31,8 +31,8 @@ public class Player extends Circle {
     private final Joystick joystick;
     private final PlayerState playerState;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, Colision tilemap) {
-        super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tilemap);
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, TileMap tileMap) {
+        super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius, tileMap);
         this.joystick = joystick;
 
         playerState = new PlayerState(this);

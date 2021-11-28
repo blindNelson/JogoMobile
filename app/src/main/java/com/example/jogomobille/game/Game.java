@@ -9,8 +9,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
+import com.example.jogomobille.R;
 import com.example.jogomobille.game.gameobject.enemy.Dummy;
+import com.example.jogomobille.game.gameobject.enemy.Teraculos;
 import com.example.jogomobille.game.gameobject.player.Player;
 import com.example.jogomobille.game.gamepanel.Joystick;
 import com.example.jogomobille.game.graphics.SpriteSheet;
@@ -22,6 +25,7 @@ import com.example.jogomobille.game.map.TileMap;
  */
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    private final Teraculos enemegus;
     //private final GameScene gameScene;
     private GamePanels gamePanels;
     private Context context;
@@ -32,7 +36,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Gameloop gameLoop;
     private int joystickPointerId = 0;
     private GameDisplay gameDisplay;
-    private Dummy todd;
 
     public Game(Context context) {
         super(context);
@@ -49,10 +52,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         joystick = new Joystick(100, 600, 70, 40);
         SpriteSheet spriteSheet = new SpriteSheet(context);
         tileMap = new TileMap(spriteSheet);
-        player = new Player(context, joystick, 128, 128, 32, tileMap.getColision());
-        todd = new Dummy(context, 164, 164, tileMap.getColision(), tileMap, player);
-
-        //gameScene = new GameScene(getContext(), player);
+        player = new Player(context, joystick, 128, 128, 32, tileMap);
+        enemegus = new Teraculos(context, ContextCompat.getColor(context, R.color.enemy), 200, 200, 30, tileMap, player);
 
         // Initialize game panels
         gamePanels = new GamePanels(gameLoop, getContext(), player);
@@ -122,8 +123,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         //gameScene.draw(canvas, gameDisplay);
         tileMap.draw(canvas, gameDisplay);
-        todd.draw(canvas,gameDisplay);
         player.draw(canvas, gameDisplay);
+        enemegus.draw(canvas, gameDisplay);
         gamePanels.draw(canvas);
 
         joystick.draw(canvas);
@@ -135,7 +136,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
 
         player.update();
-        todd.update();
+        enemegus.update();
         gamePanels.update();
         //gameScene.update();
 

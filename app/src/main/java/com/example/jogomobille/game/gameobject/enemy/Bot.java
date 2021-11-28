@@ -1,24 +1,37 @@
 package com.example.jogomobille.game.gameobject.enemy;
 
+<<<<<<< HEAD
+=======
+import static com.example.jogomobille.game.map.MapLayout.TILE_HEIGHT_PIXELS;
+import static com.example.jogomobille.game.map.MapLayout.TILE_WIDTH_PIXELS;
+>>>>>>> e7c857d1205679ea55e2807904311e178c7ed91c
 import static com.example.jogomobille.utils.Utils.getDistanceBetweenPoints;
 
 import android.content.Context;
 import android.graphics.Canvas;
+<<<<<<< HEAD
 
 import com.example.jogomobille.game.GameDisplay;
 import com.example.jogomobille.game.gameobject.Circle;
 import com.example.jogomobille.game.map.Mechanics.Colision;
+=======
+import android.util.Log;
+
+import com.example.jogomobille.game.GameDisplay;
+import com.example.jogomobille.game.Gameloop;
+import com.example.jogomobille.game.gameobject.Circle;
+>>>>>>> e7c857d1205679ea55e2807904311e178c7ed91c
 import com.example.jogomobille.game.map.TileMap;
 import com.example.jogomobille.utils.Coordenada;
 
 public abstract class Bot extends Circle
 {
-    TileMap    tileMap;
-    Coordenada target;
 
-    public Bot(Context context, int color, double positionX, double positionY, double radius, Colision colision, TileMap tileMap ) {
-        super(context, color, positionX, positionY, radius, colision);
-        target  = new Coordenada(0, 0);
+    private final double MAX_SPEED;
+
+    public Bot(Context context, int color, double positionX, double positionY, double radius, TileMap tileMap, int speed ) {
+        super(context, color, positionX, positionY, radius, tileMap);
+        this.MAX_SPEED = speed / Gameloop.MAX_UPS;
         this.tileMap = tileMap;
     }
 
@@ -28,36 +41,57 @@ public abstract class Bot extends Circle
 
     public void update(Coordenada target){
 
-        pathToTarget(target);
+        target = pathToTarget(target);
+
+        Log.d("Bot.java", "update(): Tx="+target.getX()+", Ty="+target.getY()+";");
+
+        int distance = (int)getDistanceBetweenPoints(target.getX(), target.getY(), positionX, positionY);
+
+        velocityX = ((target.getX()-positionX)/distance)*MAX_SPEED;
+        velocityY = ((target.getY()-positionY)/distance)*MAX_SPEED;
 
         super.update();
     }
 
 
     private void   faux(Coordenada target, Coordenada point, Coordenada actual){
-        if(tileMap.isColiding(point.getX(), point.getY()))
+        try {
+            if (tileMap.isPixelColiding(point.getX(), point.getY()))
+                return;
+        }
+        catch(ArrayIndexOutOfBoundsException e){
             return;
-
+        }
         int distance       = (int)getDistanceBetweenPoints(target.getX(), target.getY(), point.getX(), point.getY());
-        int actualDistance = (int)getDistanceBetweenPoints(target.getX(), target.getY(), point.getX(), point.getY());
+        int actualDistance = (int)getDistanceBetweenPoints(target.getX(), target.getY(), actual.getX(), actual.getY());
 
-        if(distance<actualDistance)
-            actual = point;
+        Log.d("Bot.java", "faux(): Px="+target.getX()+", Py="+target.getY()+";distance="+distance+", actualDistance"+actualDistance+";");
+
+        if(distance<actualDistance) {
+            Log.d("Bot.java", "faux(): distance>actualDistance");
+            actual.setX(point.getX());
+            actual.setY(point.getY());
+        }
 
         return;
     }
 
     private Coordenada pathToTarget(Coordenada target){
 
-        Coordenada ret = new Coordenada(0, 0);
+        int halfW  = (int) width/2, halfH  = (int) height/2;
+        int halfTW = (int) TILE_WIDTH_PIXELS/2, halfTH = (int) TILE_HEIGHT_PIXELS/2;
 
-        faux(target, new Coordenada((int) this.positionX+32+64, (int) this.positionY),  ret);
-        faux(target, new Coordenada((int) this.positionX, (int) this.positionY+32+64),  ret);
-        faux(target, new Coordenada((int) this.positionX-32, (int) this.positionY),     ret);
-        faux(target, new Coordenada((int) this.positionX, (int) this.positionY-32),     ret);
+        int xTilePosition = (int) (positionX/TILE_WIDTH_PIXELS);
+        int yTilePosition = (int) (positionY/TILE_HEIGHT_PIXELS);
+
+        Coordenada ret = new Coordenada(0,0);
+
+        faux(target, new Coordenada(((xTilePosition+1)*TILE_WIDTH_PIXELS)+halfTW-halfW, (int) this.positionY),  ret);
+        faux(target, new Coordenada((int) this.positionX, ((yTilePosition+1)*TILE_HEIGHT_PIXELS)+halfTH-halfH),  ret);
+        faux(target, new Coordenada(((xTilePosition-1)*TILE_WIDTH_PIXELS)+halfTW-halfW, (int) this.positionY),     ret);
+        faux(target, new Coordenada((int) this.positionX, ((yTilePosition-1)*TILE_HEIGHT_PIXELS)+halfTH-halfH),     ret);
 
         return ret;
     }
-
 
 }

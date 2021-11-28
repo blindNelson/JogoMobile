@@ -2,7 +2,6 @@ package com.example.jogomobille.game.map.Mechanics;
 
 import android.util.Log;
 
-import com.example.jogomobille.game.gameobject.GameObject;
 import com.example.jogomobille.game.map.TileMap;
 import com.example.jogomobille.utils.Coordenada;
 import com.example.jogomobille.utils.Utils;
@@ -65,7 +64,7 @@ public class MapConfig {
         stackPriority(gameObject.getX(), gameObject.getY()+32+64, target);
         stackPriority(gameObject.getX(), gameObject.getY()-32, target);
 
-        loop:while(tileMap.isColiding( primeiro.getInfo().getX(), primeiro.getInfo().getY() )){
+        loop:while(tileMap.isPixelColiding( primeiro.getInfo().getX(), primeiro.getInfo().getY() )){
             if(primeiro.proximo==null)
                 return target;
             primeiro = primeiro.getProximo();

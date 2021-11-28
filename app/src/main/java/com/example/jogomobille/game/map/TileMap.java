@@ -8,17 +8,12 @@ import static com.example.jogomobille.game.map.MapLayout.TILE_WIDTH_PIXELS;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.example.jogomobille.game.GameDisplay;
-import com.example.jogomobille.game.gameobject.GameObject;
 import com.example.jogomobille.game.graphics.SpriteSheet;
-import com.example.jogomobille.game.map.Mechanics.Colision;
-import com.example.jogomobille.game.map.Mechanics.MapConfig;
 
 public class TileMap {
     private final MapLayout mapLayout;
-    private final Colision colision;
     private Tile[][] tilemap;
     private SpriteSheet spriteSheet;
     private Bitmap mapBitmap;
@@ -27,7 +22,6 @@ public class TileMap {
         mapLayout = new MapLayout();
         this.spriteSheet = spriteSheet;
         initializeTileMap();
-        colision = new Colision(this);
     }
 
     private void initializeTileMap() {
@@ -70,11 +64,11 @@ public class TileMap {
         canvas.drawBitmap(mapBitmap, gameDisplay.getGameRect(), gameDisplay.DISPLAY_RECT, null);
     }
 
-    public boolean isColiding(int x, int y){
-        return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS].collide;
+    public boolean isPixelColiding(int x, int y){
+        return tilemap[y/TILE_HEIGHT_PIXELS][x/TILE_WIDTH_PIXELS].colide;
     }
 
-    public Colision getColision() {
-        return colision;
+    public boolean isColiding(int x, int y){
+        return tilemap[y][x].colide;
     }
 }

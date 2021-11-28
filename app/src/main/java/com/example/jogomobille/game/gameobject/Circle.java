@@ -16,8 +16,8 @@ public abstract class Circle extends GameObject {
     protected double radius;
     protected Paint paint;
 
-    public Circle(Context context, int color, double positionX, double positionY, double radius, Colision tilemap) {
-        super(positionX, positionY, radius*2, radius*2, tilemap);
+    public Circle(Context context, int color, double positionX, double positionY, double radius, TileMap tileMap) {
+        super(positionX, positionY, radius*2, radius*2, tileMap);
 
         this.radius = radius;
         paint = new Paint();
